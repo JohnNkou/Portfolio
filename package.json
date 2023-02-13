@@ -1,0 +1,16 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "My personnal website",
+  "main": "index.js",
+  "scripts": {
+    "test": "NODE_ENV=test npx jest"
+  },
+  "keywords": [
+    "Abel",
+    "kashoba",
+    "portfolio"
+  ],
+  "author": "Abel kashoba",
+  "license": "ISC"
+}

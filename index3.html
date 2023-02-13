@@ -1,0 +1,341 @@
+<html><head>
+    <style>
+        html *{
+            margin:0;
+            padding:0;
+        }
+        html,body{
+            width:100%;
+            height:100%;
+            overflow:hidden;
+        }
+        body{
+            background-image:url('psd/braden-jarvis-prSogOoFmkw-unsplash.jpg');
+            background-position:left top;
+            background-size: cover;
+            background-attachment:fixed;
+            background-repeat: no-repeat;
+        }
+        body *{
+            box-sizing: border-box;
+            font-size:0.95em;
+            font-family:'trebuchet ms'
+        }
+        a,span, img{
+            display:inline-block;
+        }
+        .il{
+            display:inline-block;
+        }
+        .whoosh{
+            display:none;
+        }
+    
+        #header{
+            background-color:black;
+            padding:3px 5px;
+            padding-left:0px;
+            color:white;
+            position:relative;
+        }
+        #header *{
+            vertical-align:middle;
+        }
+        #header > div, #fastLink > div{
+            margin-right:1em;
+        }
+        #header img{
+            width:20px;
+        }
+        #window{
+            position:relative;
+        }
+        #menuAction{
+            position:absolute;
+            top:auto;
+            bottom:auto;
+            left:auto;
+            right:auto;
+            background-color:rgba(0,0,0,.8);
+            padding:10px 10px;
+            width:800px;
+            height:500px;
+            font-size:0.8em;
+        }
+        #login{
+            margin-bottom:0.5em;
+        }
+        #login .icon{
+            background-color:rgb(102,102,102);
+            padding:5px;
+            border-radius:20px;
+        }
+        #popular .popular *{
+            vertical-align:middle;
+        }
+        #popular .title{
+            margin-bottom:0.3em;
+        }
+        #popular .popular{
+            margin-top:0.5em;
+        }
+        #popular .popular:first-child{
+            margin-top:0em;
+        }
+        #popular .popular .icon{
+            background-color:rgb(0,120,215);
+            padding:5px;
+            margin-right:0.3em;
+        }
+        #settings{
+            position:absolute;
+            bottom:0;
+            left:0;
+            margin-left:10px;
+            margin-bottom:10px;
+        }
+        #settings .icon{
+            margin-right:0.5em;
+        }
+        #settings *{
+            vertical-align:middle;
+        }
+        #time{
+            position:absolute;
+            top:auto;
+            bottom:auto;
+            right:0px;
+            left:auto;
+            margin-right:1em;
+        }
+
+        #content{
+            padding:10px 10px;
+            padding-bottom:0px;
+            color:white;
+            background-color:rgba(0,0,0,.2);
+            width:100%;
+            height:100%;
+        }
+        #content .c{
+            margin-right:1em;
+            text-align:center;
+        }
+
+        #content .folder{
+            position:absolute;
+            background-color:white;
+            color:black;
+            text-align:left;
+            left:0;
+            right:0;
+            top:0;
+            bottom:0;
+            margin:auto auto;
+            width:600px;
+            height:400px;
+            padding:0px 5px;
+        }
+        #content .folder *{
+            vertical-align:middle;
+        }
+        #content .folder .head img{
+            width:20px;
+        }
+        #content .folder .content img{
+            width:15px;
+        }
+        #content .folder .head{
+            border-bottom:1px solid rgb(218,219,220);
+            padding:3px 0px;
+        }
+        #content .folder .head .icon{
+            margin-right:0.3em;
+        }
+        #content .folder .head .actions{
+            position:absolute;
+            right:0;
+            top:0;
+        }
+        #content .folder .head .actions .action{
+            padding:3px 10px;
+        }
+        #content .folder .head .actions .action:hover{
+            background-color:silver;
+        }
+        #content .folder .head .actions .close:hover{
+            background-color:red;
+        }
+        #content .folder .cont{
+            margin-top:0.3em;
+        }
+        .contextmenu{
+            position:absolute;
+            width:200px;
+            background-color:white;
+            color:black;
+        }
+        .contextmenu .list{
+            padding:3px 5px;
+            padding-left:30px;
+        }
+        .contextmenu .list:last-child{
+            padding-bottom:5px;
+        }
+    </style>
+</head><body>
+    <div id="header">
+        <div id="window" class="il">
+            <div class="icon"><img src="psd/microsoft.png"></div>
+            <div id="menuAction" class="whoosh">
+            <div id="login">
+                <div class="icon il"><img src="psd/user.png"></div>
+                <div class="name il">Abel Kashoba</div>
+            </div>
+            <div id="popular">
+                <div class="title">
+                    <span>Popular Items</span>
+                </div>
+                <div class="popular">
+                    <div class="icon il">
+                        <img src="psd/win-folder.png">
+                    </div>
+                    <div class="name il">Project</div>
+                </div>
+                <div class="popular">
+                    <div class="icon il">
+                        <img src="psd/txt-type.png">
+                    </div>
+                    <div class="name il">Skills</div>
+                </div>
+            </div>
+    <div id="settings">
+        <div class="setting">
+            <div class="icon il">
+                <img src="psd/settings.png">
+            </div>
+            <div class="name il">
+                Change Template
+            </div>
+        </div>
+    </div>
+</div>
+        </div>
+        <div id="fastLink" class="il">
+            <div class="link il">
+                <div class="icon"><img src="psd/microsoft-edge.png"></div>
+            </div>
+            <div class="link il">
+                <div class="icon"><img src="psd/win-folder.png"></div>
+            </div>
+        </div>
+        <div id="time" class="il">
+            <span>19:50</span>
+        </div>
+    </div>
+    <div id="content">
+        <div class="c il">
+            <div class="icon">
+                <img src="psd/win-folder.png">
+            </div>
+            <div class="name">
+                <span>Project</span>
+            </div>
+        </div>
+        <div class="c il">
+            <div class="icon">
+                <img src="psd/txt-type.png">
+            </div>
+            <div class="name">
+                <span>Skills</span>
+            </div>
+        </div>
+        <div class="folder il">
+            <div class="head">
+                <div class="title il">
+                    <div class="icon il">
+                        <img src="psd/win-folder.png">
+                    </div>
+                    <div class="name il">
+                        <span>Project</span>
+                    </div>
+                </div>
+                <div class="actions">
+                    <div class="action slut il">
+                        <img src="psd/minimize.png">
+                    </div>
+                    <div class="action slut il">
+                        <img src="psd/maximize.png">
+                    </div>
+                     <div class="action slut close il">
+                        <img src="psd/close.png">
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="cont">
+                    <div class="icon il">
+                        <img src="psd/txt-type.png">
+                    </div>
+                    <div class="name il">
+                        <span>Skills</span>
+                    </div>
+                </div>
+                <div class="cont">
+                    <div class="icon il">
+                        <img src="psd/html-type.png">
+                    </div>
+                    <div class="name il">
+                        <span>Template</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="contextmenu il whoosh">
+            <div class="list">
+                <span>Open</span>
+            </div>
+            <div class="list">
+                <span>Rename</span>
+            </div>
+            <div class="list">
+                <span>Contact me</span>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        var h = document.querySelector('.folder .head'),
+        folder = document.querySelector('.folder');
+        h.onmousedown = function(event){
+            var x = event.clientX,
+            y = event.clientY,
+            bish = folder.getBoundingClientRect(),
+            gcp = getComputedStyle(folder),
+            bx = bish.x,
+            by = bish.y
+
+
+            document.body.onmouseup = function(event){
+                document.body.onmousemove = null;
+                document.body.onmouseup = null;
+            }
+            document.body.onmousemove = function(event){
+                event.preventDefault();
+                var nx = event.clientX,
+                ny = event.clientY,
+                dfX = nx -x,
+                dfY = ny -y,
+                newBx = bx + dfX,
+                newBy = by + dfY;
+
+                x = nx;
+                y = ny;
+
+                folder.style.left = newBx - parseInt(gcp.marginLeft,10) + "px";
+                folder.style.top = newBy - parseInt(gcp.marginTop,10) + "px";
+                bx = newBx;
+                by = newBy;
+            }
+        }
+    </script>
+</body></html>n
