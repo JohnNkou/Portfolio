@@ -1,0 +1,441 @@
+@keyframes swing{
+    from{
+        top:0px
+    }
+    to{
+        top:-10px;
+    }
+}
+    html,body{
+        width:100%;
+        height:100%;
+        overflow:hidden;
+    }
+    body{
+        background-image:url('../../psd/lion.jpg');
+        background-attachment: fixed;
+        background-position:left top;
+        background-size:100% 100%;
+        background-attachment:fixed;
+    }
+    body *{
+        box-sizing: border-box;
+        font-family:"verdana";
+        font-size:0.92em;
+    }
+    span{
+        cursor:default;
+    }
+    .menu{
+        position:absolute;
+        margin-top:0px;
+        top:26px;
+        bottom:auto;
+        right:auto;
+        left:auto;
+        background-color:rgb(219 221 221 / 96%);
+        border-top:1px solid #626161;
+        width:300px;
+        padding:3px 0px;
+        border-radius:0px 0px 5px 5px;
+        text-align:left;
+    }
+    .menu .menuText{
+        padding:3px 5px;
+        padding-left:20px;
+        position:relative;
+    }
+    .menu .menuText *{
+        vertical-align:middle;
+        font-size:1.1em;
+    }
+    .menu .menuText .menu *{
+        font-size:inherit;
+        font-family:inherit;
+    }
+    .menu .menuText span, .menu .menuText a{
+        width:260px;
+        line-height:20px;
+        cursor:default;
+    }
+    
+    .menu .menuText .menu{
+        top:0px;
+        left:99.9%;
+        border-radius:5px;
+        display:none;
+        color:black;
+    }
+    .menu .menuText:hover .menu{
+        display:block;
+    }
+    .menu .menuText:hover{
+        background-color:rgba(0,0,0,.3);
+        color:white;
+    }
+    .menu .menuText:last-child{
+        padding-bottom:5px;
+    }
+    .contextMenu{
+        border-radius:5px 5px 5px 5px;
+        border-top:none;
+        margin-top:0px;
+        width:253;
+        overflow:hidden;
+    }
+    #loading{
+        position:absolute;
+        z-index:2000;
+        width:100%;
+        height:100%;
+
+        text-align:center;
+        background-color:black;
+    }
+    #loading *{
+        vertical-align:middle;
+    }
+    #header{
+        background-color:rgb(177,178,177);
+        position:fixed;
+        top:0;
+        left:0;
+        width:100%;
+        z-index:100000000;
+        padding-left:5px
+    }
+    #header > div{
+        padding:0px 5px;
+    }
+    #header > div{
+        vertical-align:middle;
+    }
+    #apple{
+        margin-right:1em;
+        position:relative;
+        padding:0px 0px;
+    }
+    #apple .icon, #app .wrap, #menuAction .name{
+        height:26px;
+        padding:3px 0px;
+    }
+    #apple .active{
+        background-color:rgba(0,0,0,.5);
+    }
+    #app{
+        position:relative;
+    }
+    #app .appName{
+        font-weight:bold;
+        line-height:20px;
+    }
+     #menuAction span{
+       margin-right:1em; 
+    }
+    #menuAction span:last-child{
+        margin-right:0em;
+    }
+    #app .menu, #menuAction .menu{
+        width:240px
+    }
+    #time{
+        position:absolute;
+        top:auto;
+        bottom:auto;
+        right:3em;
+    }
+    #time span{
+        padding:3px 5px;
+    }
+
+     #desktop{
+        text-align:right;
+        margin-top: 2em;
+        /* border: 2px solid cornflowerblue; */
+        position: relative;
+    }
+    #desktop .desktopItems{
+        position:relative;
+    }
+    #desktop .item{
+        color:white;
+        text-align:center;
+        margin-right:2em;
+        position:relative;
+        width:48px;
+        height:48px;
+        vertical-align:top;
+    }
+    #desktop > div:last-child{
+        margin-right:0em;
+    }
+    #desktop .desktopItems .active{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    #desktop .desktopItems .active .icon, #desktop .desktopItems .active .text{
+        background-color:rgb(0,0,0,.5)
+    }
+    #desktop .desktopItems .unactive .icon, #desktop .desktopItems .unactive .text{
+        background-color:transparent;
+    }
+    #desktop .desktopItems .icon, #desktop .desktopItems .text{
+        border-radius:3px;
+    }
+    #desktop .desktopItems .icon{
+        margin-bottom:3px;
+    }
+    .box{
+        position:absolute;
+        margin-right:auto;
+        margin-left:auto;
+        margin-top:auto;
+        margin-bottom:auto;
+        left:0;
+        right:0;
+        top:auto;
+        bottom:auto;
+        width:600px;
+        height:400px;
+        border-radius:5px;
+        background-color:rgb(255,255,255);
+        border:1px solid rgb(0,0,0,.1);
+        overflow:hidden;
+    }
+
+    .box .head{
+        position:fixed;
+        text-align:center;
+        width:598px;;
+        background-color:rgb(212,212,213);
+        border-bottom:1px solid rgb(168,168,167);
+        border-radius:5px 5px 0px 0px;
+        text-align:center;
+    }
+    .full .head{
+        width:100%;
+    }
+    .box .head .buttons{
+        position:absolute;
+        left:0px;
+        margin-left:10px;
+    }
+    .folder .head{
+        padding:2px 0px;
+    }
+
+    .folder .head .currentFolder > div, .about .head .tabs > div{
+        vertical-align: middle;
+    }
+    .folder .head .currentFolder .icon{
+        margin-right:5px;
+    }
+    .folder .head .icon img, .safari .head .icon img, .about .head .icon img{
+        height:20px;
+    }
+    .folder .content{
+        text-align:left;
+        margin-top:29px;
+    }
+    .safari .head .buttons, .safari .head .url{
+        padding:10px 0px;
+    }
+    .safari .head .url input{
+        border-radius:5px;
+        border:1px solid silver;
+        height:20px;
+        width:250px;
+        text-align:center;
+    }
+    .safari .frame{
+        text-align:left;
+        height:100%;
+        margin-top:41px;
+    }
+    .safari iframe{
+        width:100%;
+        height:100%;
+        border:none;
+    }
+    .sublimeText{
+        border:1px solid black;
+    }
+    .sublimeText .head{
+        padding:20px 0px;
+        background-color:rgb(31,37,42);
+        border-bottom:none;
+    }
+    .sublimeText .head .buttons{
+        top:2px;
+    }
+    .sublimeText .head .fileName{
+        color:rgb(143,147,151);
+    }
+    .sublimeText .content{
+        text-align:left;
+        height:100%;
+        padding:0px 5px;
+        margin-top:53px;
+    }
+    .sublimeText .content textarea{
+        border:none;
+        height:100%;
+        width:100%;
+        -webkit-appearance:none;
+    }
+    .sublimeText .content textarea:focus{
+        -webkit-appearance:none;
+        appearance:none;
+        moz-appearance:none;
+    }
+    .sublimeText .content, .sublimeText textarea{
+        background-color:rgb(52,61,70);
+        color:white;
+    }
+    #desktop .folder .content .active{
+        background-color:rgba(0,0,0,.6);
+        color:white;
+    }
+    .folder .list:nth-child(odd){
+        background-color:rgb(244,245,245);
+    }
+    .folder .list{
+        padding-left:10px;
+        margin-bottom:3px;
+    }
+    .folder .list > div{
+        vertical-align:middle;
+    }
+    .folder .list .icon{
+        margin-right:5px;
+    }
+    .folder .list img{
+        width:20px;
+    }
+    .folder .list .name span{
+        font-size:0.9em;
+    }
+    .folder .bottom{
+        width:100%;
+        background-color:rgb(212,212,213);
+        border-top:1px solid rgb(168,168,167);
+        height:20px;
+        position:absolute;
+        bottom:0;
+        left:0;
+        border-radius:0px 0px 10px 10px;
+    }
+    .about .head{
+        padding:10px 0px;
+    }
+    .about .tabs span{
+        font-size:1.1em;
+        line-height:20px;
+        color:rgb(38 37 37);
+        width:100%;
+        height:100%;
+        padding:0px 10px;
+    }
+    .about .tab{
+        background-color:white;
+        border:1px solid rgb(206 197 197);
+        border-left:none;
+    }
+    .about .tabs .active{
+        background-color:#646161;
+    }
+    .about .tabs .active span{
+        color:white;
+    }
+    .about .tab:first-child{
+        border-left:1px solid rgb(206 197 197);
+        border-radius:5px 0px 0px 5px;
+    }
+    .about .tab:last-child{
+        border-radius:0px 5px 5px 0px;
+    }
+    .about .content{
+        padding:0px 10px;
+        padding-top:5px;
+        text-align:center;
+        margin-top:43px;
+        font-size:1.6em;
+        overflow:scroll;
+        height:357px;
+    }
+    .about .content h1{
+        font-size:2em;
+        margin-bottom:0.5em
+    }
+    
+    .about .content p{
+        display:inline-block;
+        font-size:1.5em;
+        word-spacing:10px;
+        line-height:50px
+    }
+    .about .skill{
+        margin-bottom:1em;
+    }
+    .about .contact{
+        height:100%;
+        width:100%;
+    }
+    .about .contact h2{
+        font-size:2em;
+        margin-bottom:0.2em;
+    }
+    .about .contact .mail{
+        margin-bottom:1em;
+    }
+    .about .contact span{
+        font-size:1.4em;
+    }
+    .about .contact img{
+        width:50px
+    }
+
+    #docker{
+        position:fixed;
+        bottom:0;
+        text-align:center;
+        width:100%;
+    }
+    #docker .dockWrap{
+        padding:5px 5px;
+        background-color:rgba(255,255,255,.8);
+        border-radius:10px 10px 0px 0px;
+    }
+    #docker .dockWrap .dock{
+        position:relative;
+        width:24px;
+        height:24px;
+        vertical-align:top;
+    }
+    #docker .dockWrap .dock .icon{
+        position:absolute;
+        left:0;
+        top:0;
+    }
+    #docker .dockWrap .dock .indicator{
+        position:absolute;
+        bottom:-6px;
+        text-align:center;
+        width:100%;
+    }
+    #docker .dockWrap .dock .indicator span{
+        font-size:1.2em;
+    }
+    #docker .dockWrap .dock img{
+        transition:transform 400ms ease-in;
+    }
+    #docker .dockWrap .dock img:hover{
+        transform:scale(2);
+    }
+    #docker .dockWrap .animate{
+        animation-name:swing;
+        animation-duration:400ms;
+        animation-direction:alternate;
+        animation-iteration-count:4;
+    }
