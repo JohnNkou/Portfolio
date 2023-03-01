@@ -1,322 +1,431 @@
-<html><head>
-    <style>
-    @keyframes swing{
-        from{
-            top:0px;
-        }
-        to{
-            top:-10px;
-        }
-    }
-        html *{
-            margin:0;
-            padding:0;
-        }
-        html,body{
-            width:100%;
-            height:100%;
-            overflow:hidden;
-        }
-        body{
-            background-image:url('psd/lion.jpg');
-            background-attachment: fixed;
-            background-position:left top;
-            background-size:100% 100%;
-            background-attachment:fixed;
-        }
-        body *{
-            box-sizing: border-box;
-            font-family:"verdana";
-            font-size:0.92em;
-        }
-        a,span{
-            display:inline-block;
-        }
-        .il{
-            display:inline-block;
-        }
-        .whoosh{
-            display:none;
-        }
-        .menu{
-            position:absolute;
-            margin-top:3px;
-            top:auto;
-            bottom:auto;
-            right:auto;
-            left:auto;
-            background-color:rgba(241,242,242,.7);
-            border-top:1px solid silver;
-            width:300px;
-            padding:3px 0px;
-            border-radius:0px 0px 5px 5px;
-            text-align:left;
-        }
-        .menu .menuText{
-            padding:3px 5px;
-            padding-left:20px;
-        }
-        .menu .menuText:hover{
-            background-color:rgba(0,0,0,.3);
-            color:white;
-        }
-        .menu .menuText:last-child{
-            padding-bottom:5px;
-        }
-        .menu .menuText span{
-            font-size:1.1em;
-        }
-        .contextMenu{
-            border-radius:5px 5px 5px 5px;
-            border-top:none;
-            margin-top:0px;
-            width:253;
-            overflow:hidden;
-        }
-        #header{
-            background-color:rgb(177,178,177);
-            padding:3px 5px;
-            position:fixed;
-            top:0;
-            left:0;
-            width:100%;
-        }
-        #header > div{
-            vertical-align:middle;
-        }
-        #apple{
-            margin-right:1em;
-            position:relative;
-        }
-
-        #menuAction span{
-           margin-right:1em; 
-        }
-        #menuAction span:last-child{
-            margin-right:0em;
-        }
-        #time{
-            position:absolute;
-            top:auto;
-            bottom:auto;
-            right:3em;
-        }
-
-        #content{
-            text-align:right;
-            padding-top:2em;
-        }
-        #content .c{
-            color:white;
-            text-align:center;
-            margin-right:2em;
-        }
-        #content > div:last-child{
-            margin-right:0em;
-        }
-        #content .list .active .icon, #content .list .active .text{
-            background-color:rgb(0,0,0,.5)
-        }
-        #content .list .icon, #content .list .text{
-            border-radius:3px;
-        }
-        #content .list .icon{
-            margin-bottom:3px;
-        }
-        #content .c .list .icon:active, #content .c .list .text:active{
-            background-color:rgb(0,0,0,.5)
-        }
-        .folder{
-            position:absolute;
-            margin-right:auto;
-            margin-left:auto;
-            margin-top:auto;
-            margin-bottom:auto;
-            left:0;
-            right:0;
-            top:auto;
-            bottom:auto;
-            width:600px;
-            height:400px;
-            border-radius:10px;
-            background-color:rgb(255,255,255)
-        }
-        .folder .head{
-            width:100%;
-            padding:2px 0px;
-            background-color:rgb(212,212,213);
-            border-bottom:1px solid rgb(168,168,167);
-            border-radius:10px 10px 0px 0px;
-            position:relative;
-            text-align:center;
-        }
-        .folder .head .currentFolder > div{
-            vertical-align:middle;
-        }
-        .folder .head .icon{
-            margin-right:5px;
-        }
-        .folder .head .icon img{
-            height:20px;
-        }
-        .folder .content{
-            text-align:left;
-        }
-        .folder .list:nth-child(odd){
-            background-color:rgb(244,245,245);
-        }
-        .folder .list{
-            padding-left:10px;
-            margin-bottom:3px;
-        }
-        .folder .list > div{
-            vertical-align:middle;
-        }
-        .folder .list .icon{
-            margin-right:5px;
-        }
-        .folder .list img{
-            width:20px;
-        }
-        .folder .list .name span{
-            font-size:0.9em;
-        }
-        .folder .bottom{
-            width:100%;
-            background-color:rgb(212,212,213);
-            border-top:1px solid rgb(168,168,167);
-            height:20px;
-            position:absolute;
-            bottom:0;
-            left:0;
-            border-radius:0px 0px 10px 10px;
-        }
-    
-        #docker{
-            position:fixed;
-            bottom:0;
-            text-align:center;
-            width:100%;
-        }
-        #docker .dockWrap{
-            padding:5px 5px;
-            background-color:rgba(255,255,255,.8);
-            border-radius:10px 10px 0px 0px;
-        }
-        #docker .dockWrap .dock{
-            position:relative;
-            width:24px;
-            height:24px;
-        }
-        #docker .dockWrap .dock img{
-            transition:transform 400ms ease-in;
-            position:absolute;
-            left:0;
-            top:0;
-        }
-        #docker .dockWrap .dock img:hover{
-            transform:scale(2);
-        }
-        #docker .dockWrap .dock img:active{
-            animation-name:swing;
-            animation-duration:300ms;
-            animation-direction:alternate;
-            animation-iteration-count:infinite;
-        }
-    </style>
-</head><body>
-
+<html>
+    <head>
+       <link rel="stylesheet" href="css/mac/main.css" />
+        <link rel='stylesheet' href='css/common.css' />
+    </head>
+    <body>
+    <div id='loading' class='whoosh'>
+        <img src='psd/loading-circle.gif' /><div class='tight'></div>
+    </div>
     <div id="header">
         <div id="apple" class="il">
-            <div><img src="psd/apple.png"></div>
-    <div class="menu">
-    <div class="menuText">
-        <span>About Me</span>
-    </div>
-    <div class="menuText">
-        <span>Change template</span>
-    </div>
-    </div>
+            <div class='icon'><img src="psd/apple.png"></div>
+            <div class="menu">
+                <div class="menuText">
+                    <span>About Me</span>
+                </div>
+                <div class="menuText">
+                    <span>Change template</span><img src='psd/next.png' />
+                        <div class='menu'>
+                                <div class='menuText'>
+                                    <a href="#">Windows</a>
+                                </div>
+                                <div class='menuText'>
+                                    <a href="#"></span>Custom</a>
+                                </div>
+                            </div>
+                </div>
+            </div>
         </div>
-        <div id="menuAction" class="il"><span>Finder</span>
-            
-            <span>File</span>
-            <span>Edit</span>
-            <span>View</span>
-            <span>Go</span>
-            <span>Window</span>
-            <span>Help</span>
+        <div id='app' class='il'>
+            <div><span class='appName'>Finder</span><div class='tight'></div></div>
+            <div class='menu whoosh'>
+                <div class='menuText'>
+                    <span>Close</span>
+                </div>
+            </div>
+        </div>
+        <div id="menuAction" class="il">
+            <div class='name'><span>File</span></div>
+            <div class='menu whoosh'>
+                <div class='menuText'>
+                    <span>Save</span>
+                </div>
+            </div>
         </div>
         <div id="time" class="il">
             <span>Fri 10:35Am</span>
         </div>
-    </div><div id="content">
-    <div class="list">
-        <div class="c il">
-            <div class="icon"><img src="file:///Users/flashbell/Node/Portfolio/psd/txt-type.png"></div>
-            <div class="text">Skills</div>
-        </div>
-<div class="c il active">
-            <div class="icon"><img src="file:///Users/flashbell/Node/Portfolio/psd/folder.png"></div>
-            <div class="text">Project</div>
-        </div>
     </div>
-        <div class="folder il">
-    <div class="head">
-    <div class="buttons"></div>
-    <div class="currentFolder">
-        <div class="icon il"><img src="psd/folder.png"></div>
-        <div class="name il">Project</div>
-    </div>
-</div>
-    <div class="content">
-        <div class="list">
-            <div class="icon il">
-                <img src="psd/txt-type.png">
+    <div id="desktop">
+        <div class="desktopItems">
+            <div class="item il">
+                <div class='wrapper'>
+                    <div class="icon"><img src="psd/txt-type.png"></div>
+                    <div class="text"><span>Skills</span></div>
+                </div>
             </div>
-            <div class="name il"><span>Javascript</span></div>
-        </div>
-        <div class="list">
-            <div class="icon il">
-                <img src="psd/html-type.png">
+            <div class="item il">
+                <div class='wrapper active unactive'>
+                    <div class="icon"><img src="psd/folder.png"></div>
+                    <div class="text"><span>Project</span></div>
+                </div>
             </div>
-            <div class="name il"><span>Javascript</span></div>
         </div>
-    </div>
-    <div class="bottom"></div>
-</div>
-    <div class="contextMenu menu whoosh">
-        <div class="menuText">
-            <span>New Folder</span>
+        <div class="folder il box whoosh">
+            <div class="head">
+                <div class="buttons">
+                    <div class='icon il close'>
+                        <img src='psd/mac-close.png' />
+                    </div>
+                    <div class='icon il minimize'>
+                        <img src='psd/mac-minimize.png' />
+                    </div>
+                    <div class='icon il fullscreen'>
+                        <img src='psd/mac-full-screen.png' />
+                    </div>
+                </div>
+                <div class="currentFolder">
+                    <div class="icon il"><img src="psd/folder.png"></div>
+                    <div class="name il">Project</div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="list">
+                    <div class="icon il">
+                        <img src="psd/txt-type.png">
+                    </div>
+                    <div class="name il"><span>Javascript</span></div>
+                </div>
+                <div class="list">
+                    <div class="icon il">
+                        <img src="psd/html-type.png">
+                    </div>
+                    <div class="name il"><span>Javascript</span></div>
+                </div>
+            </div>
+            <div class="bottom"></div>
         </div>
-        <div class="menuText">
-            <span>New Tact</span>
+        <div class="safari il box whoosh">
+            <div class="head">
+                <div class="buttons">
+                    <div class='icon il close'>
+                        <img src='psd/mac-close.png' />
+                    </div>
+                    <div class='icon il minimize'>
+                        <img src='psd/mac-minimize.png' />
+                    </div>
+                    <div class='icon il fullscreen'>
+                        <img src='psd/mac-full-screen.png' />
+                    </div>
+                </div>
+                <div class="url">
+                    <input type='text' />
+                </div>
+            </div>
+            <div class="frame">
+                
+            </div>
+            <div class="bottom"></div>
         </div>
-        <div class="menuText">
-            <span>New Grace</span>
+        <div class="sublimeText il box whoosh">
+            <div class="head">
+                <div class="buttons">
+                    <div class='icon il close'>
+                        <img src='psd/mac-close.png' />
+                    </div>
+                    <div class='icon il minimize'>
+                        <img src='psd/mac-minimize.png' />
+                    </div>
+                    <div class='icon il fullscreen'>
+                        <img src='psd/mac-full-screen.png' />
+                    </div>
+                </div>
+                <div class='fileName'>
+                    <span>Skills</span>
+                </div>
+            </div>
+            <div class="content">
+                <textarea>Je suis certain que tous se pasera bien</textarea>
+            </div>
+            <div class="bottom"></div>
         </div>
-    </div>
-    
+        <div class="about il box whoosh">
+            <div class="head">
+                <div class="buttons">
+                    <div class='icon il close'>
+                        <img src='psd/mac-close.png' />
+                    </div>
+                    <div class='icon il minimize'>
+                        <img src='psd/mac-minimize.png' />
+                    </div>
+                    <div class='icon il fullscreen'>
+                        <img src='psd/mac-full-screen.png' />
+                    </div>
+                </div>
+                <div class="tabs">
+                    <div class='tab il active'>
+                        <span>Presentation</span>
+                    </div><div class='tab il'>
+                        <span>Skills</span>
+                    </div><div class='tab il'>
+                        <span>Contact</span>
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class='pres whoosh'>
+                    <h1>Hi, I'm Abel Kashoba</h1>
+                    <p>A software developer who like to build
+                    reliable app the scale well and are high preformant</p>
+                </div>
+                <div class='skills whoosh'>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/javascript.png' />
+                        </div>
+                        <div class='name'>
+                            Javascript
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/graphql.png' />
+                        </div>
+                        <div class='name'>
+                            Graphql
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/git.png' />
+                        </div>
+                        <div class='name'>
+                            Git
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/redux.png' />
+                        </div>
+                        <div class='name'>
+                            Redux
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/nodejs.png' />
+                        </div>
+                        <div class='name'>
+                            nodeJs
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/javascript.png' />
+                        </div>
+                        <div class='name'>
+                            Javascript
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/graphql.png' />
+                        </div>
+                        <div class='name'>
+                            Graphql
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/git.png' />
+                        </div>
+                        <div class='name'>
+                            Git
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/redux.png' />
+                        </div>
+                        <div class='name'>
+                            Redux
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/nodejs.png' />
+                        </div>
+                        <div class='name'>
+                            nodeJs
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/javascript.png' />
+                        </div>
+                        <div class='name'>
+                            Javascript
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/graphql.png' />
+                        </div>
+                        <div class='name'>
+                            Graphql
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/git.png' />
+                        </div>
+                        <div class='name'>
+                            Git
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/redux.png' />
+                        </div>
+                        <div class='name'>
+                            Redux
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/nodejs.png' />
+                        </div>
+                        <div class='name'>
+                            nodeJs
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/javascript.png' />
+                        </div>
+                        <div class='name'>
+                            Javascript
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/graphql.png' />
+                        </div>
+                        <div class='name'>
+                            Graphql
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/git.png' />
+                        </div>
+                        <div class='name'>
+                            Git
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/redux.png' />
+                        </div>
+                        <div class='name'>
+                            Redux
+                        </div>
+                    </div>
+                    <div class='skill il'>
+                        <div class='icon'>
+                            <img src='psd/nodejs.png' />
+                        </div>
+                        <div class='name'>
+                            nodeJs
+                        </div>
+                    </div>
+                </div>
+                <div class='contact'>
+                    <div class='wrapper vmid il'>
+                        <div class='mail'>
+                            <h2>Mail</h2>
+                            <span>lebakashoba@hotmail.fr</span>
+                        </div>
+                        <div class='socials'>
+                            <h2>Socials</h2>
+                            <div class='social il'>
+                                <img src='psd/linkedin.png' />
+                            </div>
+                            <div class='social il'>
+                                <img src='psd/github.png' />
+                            </div>
+                        </div>
+                    </div><div class='tight vmid'></div>
+                </div>
+            </div>
+            <div class="bottom"></div>
+        </div>
+        <div class="contextMenu menu whoosh">
+            <div class="menuText">
+                <span>New Folder</span>
+            </div>
+            <div class="menuText">
+                <span>New Tact</span>
+            </div>
+            <div class="menuText">
+                <span>New Grace</span>
+            </div>
+        </div>
     </div>
 
-    
     <div id="docker">
-    <div class="il dockWrap">
-        <div class="dock il">
-            <img src="psd/finder.png">
-        </div>
-        <div class="dock il">
-            <img src="psd/sublime-text.png">
-        </div>
-        <div class="dock il current">
-            <img src="psd/vlc.png">
-        </div>
-        
-        <div class="dock il">
-            <img src="psd/mail.png">
+        <div class="il dockWrap">
+            <div class="dock il">
+                <div class='icon'>
+                    <img src="psd/finder.png">
+                </div>
+                <div class='indicator'>
+                    <span>.</span>
+                </div>
+            </div>
+            <div class="dock il">
+                <div class='icon'>
+                    <img src="psd/sublime-text.png">
+                </div>
+                <div class='indicator whine'>
+                    <span>.</span>
+                </div>
+            </div>
+            <div class="dock il current">
+                <div class='icon'>
+                    <img src="psd/vlc.png">
+                </div>
+                <div class='indicator whine'>
+                    <span>.</span>
+                </div>
+            </div>
+            
+            <div class="dock il">
+                <div class='icon'>
+                    <img src="psd/mail.png">
+                </div>
+                <div class='indicator whine'>
+                    <span>.</span>
+                </div>
+            </div>
         </div>
     </div>
-    </div>
+        <div id='macLoading' class='whoosh'>
+                <div class='first il vmid'>
+                        <div class='icon'>
+                                <img src='psd/big-apple.png' />
+                        </div>
+                        <div class='bar'>
+                                        <span class='progress'></span>
+                        </div>
+                </div><div class='tight vmid'></div>
+        </div>
+            <div id='windowLoading'>
+                <div class='first il vmid'>
+                        <div class='icon'>
+                                <img src='psd/big-window.png' />
+                        </div>
+                        <div class='animation'>
+                                <div class='circle'>
+                                        <img src='' />
+                                </div>
+                                <div class='info'>
+                                        Loading data
+                                </div>
+                        </div>
+                </div><div class='tight vmid'></div>
+        </div>
     <script type="text/javascript">
         var folder = document.querySelector(".folder"),
         head = folder.querySelector(".head"),
@@ -325,10 +434,18 @@
         head.onmousedown = (event)=>{
             var x = event.clientX,
             y = event.clientY,
-            bish = folder.getBoundingClientRect(),
             gcp = getComputedStyle(folder),
-            bx = bish.x,
-            by = bish.y;
+            mL = parseInt(gcp.marginLeft,10),
+            mT = parseInt(gcp.marginTop,10);
+            
+            if(mL){
+                folder.style.left = mL + parseFloat(gcp.left,10) + "px";
+                folder.style.marginLeft = folder.style.marginRight = '0px'
+            }
+            if(mT){
+                folder.style.top = mT + parseFloat(gcp.top,10) + "px";
+                folder.style.marginTop = folder.style.marginBottom = '0px';
+            }
 
             body.onmouseup = (event)=>{
                 body.onmousemove = null;
@@ -341,16 +458,14 @@
                 ny = event.clientY,
                 dfX = nx -x,
                 dfY = ny -y,
-                newBx = bx + dfX,
-                newBy = by + dfY;
+                newBx = parseFloat(gcp.left) + dfX,
+                newBy = parseFloat(gcp.top) + dfY;
 
-                bx = newBx;
-                by = newBy;
                 x = nx;
                 y = ny;
 
-                folder.style.left = newBx - parseInt(gcp.marginLeft) + "px";
-                folder.style.top = newBy - parseInt(gcp.marginTop) + "px";
+                folder.style.left = newBx + "px";
+                folder.style.top = newBy + "px";
 
             }
         }

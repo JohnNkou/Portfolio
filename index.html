@@ -1,187 +1,43 @@
 <html><head>
-    <style>
-        html *{
-            margin:0;
-            padding:0;
-        }
-        html,body{
-            width:100%;
-            height:100%;
-            background-color:rgb(0,113,188);
-        }
-        a,span,li{
-            display:inline-block;
-        }
-        body *{
-            box-sizing:border-box;
-        }
-        .il{
-            display:inline-block;
-        }
-        .tight{
-            height:100%;
-            display:inline-block;
-        }
-        #header{
-            padding-top:20px;
-            padding-left:20px;
-            padding-right:20px;
-            position:relative;
-            width:100%;
-        }
-        .template span{
-            background-color:white;
-            padding:10px;
-            border-radius:10px;
-        }
-        .modeShift{
-            position:absolute;
-            top:20px;
-            right:20px;
-        }
-        #sideBar{
-            position:fixed;
-            padding:10px;
-            background-color:white;
-            text-align:center;
-            border-radius:10px;
-            right:2px;
-            top:100px;
-            border:1px solid silver;
-        }
-        #sideBar .side{
-            margin-bottom:1em;
-            transition: border-left .3s ease;
-            -webkit-transition: border-left .3s ease;
-        }
-        #sideBar .side:target{
-            border-left:3px solid blue;
-        }
-        #sideBar div:last-child{
-            margin-bottom:0px
-        }
-
-        #presentation{
-            text-align:center;
-            margin-top:2em;
-        }
-        #presentation div{
-            width:500px;
-            border-left:10px solid white;
-            border-right:10px solid white;
-            padding:0px 20px;
-        }
-        #presentation p{
-            color:white;
-            font-size:2em;
-            font-weight:bold;
-        }
-
-        #skill{
-            margin-top:3em;
-            text-align:center;
-        }
-        #skill .title{
-            background-color:white;
-            padding:10px 20px;
-            border-radius:10px;
-        }
-        #skill .title h1{
-            color:red;
-        }
-        #skill .skillwrapper{
-            background-color:white;
-            border-radius:10px;
-            margin:0px 1em;
-            margin-top:2em
-        }
-        #skill .skill{
-            margin-right:1em;
-            margin-bottom:2em;
-        }
-        #skill .skill .icon{
-            transition: transform 400ms ease;
-            -webkit-transition: transform 400ms ease;
-        }
-        #skill .skill .icon:hover{
-            transform:scale(1.3);
-            -webkit-transform: scale(1.3);
-        }
-
-        #project{
-            text-align:center;
-            margin-top:3em;
-            background-color:white;
-            padding:1em; 0px;
-        }
-        #project .title{
-            margin-bottom:1em;
-        }
-        #project .title h1{
-            color:#c39502;
-            border:1px solid silver;
-            border-radius:10px;
-            padding:10px 20px;
-        }
-        #project .project{
-            margin-bottom:2em;
-        }
-        #project .project .name{
-            width:100px;
-            box-shadow:0px 2px 3px black;
-            padding:10px;
-        }
-        #project .project .description{
-            width:500px;
-            padding:10px;
-            background-color:rgb(236 235 235);
-        }
-        #project .project > div{
-            vertical-align:top;
-        }
-        footer{
-            color:white;
-            position:relative;
-            padding:20px;
-            width:100%;
-        }
-        #socials{
-            position:absolute;
-            top:auto;
-            bottom:auto;
-            right:0
-        }
-        #socials .social{
-            margin-right:1em
-        }
-    </style>
-</head><body>
-    <div id='header'>
-        <div class="template il">
-    <div>
-        <span>Custom Template</span>
-    </div>
-</div>
-        <div class="il modeShift">
-    <img src="psd/Sun.png">
-</div>
+   <link rel="stylesheet" href="css/custom/main.css">
+    <link rel="stylesheet" href="css/common.css" />
+    <meta name='viewport' content='width=device-width; initial-scale=1.0' />
+</head>
+<body>
+    <div id="header">
+        <div id="templateChooser" class="il vmid">
+            <div class="current il">
+                <span>Custom Template</span>
+            </div><div class='tight vmid'></div>
+            <div class="wrapper whoosh">
+                <div class="list">
+                    <span>Window</span>
+                </div>
+                 <div class="list">
+                    <span>Mac</span>
+                </div>
+            </div>
+        </div><div class='tight vmid'></div>
+        <div id="modeShift" class='il'>
+            <img class='vmid' src="psd/Sun.png"><div class='tight vmid'></div>
+        </div>
     </div>
     <div id="sideBar">
         <div class="side" id="home">
             <div class="icon"><a href="#home"><img src="psd/homeIm.png"></a></div>
-            <div class="title">Home</div>
+            <div class="title"><span>Home</span></div>
         </div>
         <div id="ski" class="side">
             <div class="icon"><a href="#ski"><img src="psd/skill.png"></a></div>
-            <div class="title">Skill</div>
+            <div class="title"><span>Skill</span></div>
         </div>
         <div id="proj" class="side">
             <div class="icon"><a href="#proj"><img src="psd/project.png"></a></div>
-            <div class="title">Project</div>
+            <div class="title"><span>Project</span></div>
         </div>
         <div class="side">
             <div class="icon"><img src="psd/Asset_8.png"></div>
-            <div class="title">Contact</div>
+            <div class="title"><span>Contact</span></div>
         </div>
     </div>
     <div id="presentation">
@@ -195,47 +51,47 @@
             <h1>Skills &amp; certs</h1>
         </div>
         <div class="skillwrapper">
-    <div class="skill il">
-        <div class="icon"><img src="psd/javascript.png"></div>
-        <div class="name">Javascript</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/redux.png"></div>
-        <div class="name">Redux</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/graphql.png"></div>
-        <div class="name">Graphql</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/nodejs.png"></div>
-        <div class="name">nodejs</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/css3.png"></div>
-        <div class="name">css</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/html.png"></div>
-        <div class="name">Html</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/mongodb.png"></div>
-        <div class="name">mongodb</div>
-    </div>
-    <div class="skill il">
-        <div class="icon"><img src="psd/rest-api.png"></div>
-        <div class="name">Rest api</div>
-    </div>
-    
-    <div class="skill il">
-        <div class="icon"><img src="psd/git.png"></div>
-        <div class="name">Git</div>
-    </div><div class="skill il">
-        <div class="icon"><img src="psd/awslambda.png"></div>
-        <div class="name">Lambda</div>
-    </div>
-</div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/javascript.png"></div>
+                <div class="name"><span>Javascript</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/redux.png"></div>
+                <div class="name"><span>Redux</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/graphql.png"></div>
+                <div class="name"><span>Graphql</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/nodejs.png"></div>
+                <div class="name"><span>nodejs</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/css3.png"></div>
+                <div class="name"><span>css</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/html.png"></div>
+                <div class="name"><span>Html</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/mongodb.png"></div>
+                <div class="name"><span>mongodb</span></div>
+            </div>
+            <div class="skill il">
+                <div class="icon"><img src="psd/rest-api.png"></div>
+                <div class="name"><span>Rest api</span></div>
+            </div>
+            
+            <div class="skill il">
+                <div class="icon"><img src="psd/git.png"></div>
+                <div class="name"><span>Git</span></div>
+            </div><div class="skill il">
+                <div class="icon"><img src="psd/awslambda.png"></div>
+                <div class="name"><span>Lambda</span></div>
+            </div>
+        </div>
     </div>
     <div id="project">
         <div class="title il">
@@ -269,14 +125,24 @@
         </div>
     </div>
     <footer>
-        <div id="design" class="il">Built by Me</div>
+        <div id="design" class="il"><span>Built by Me</span></div>
         <div id="socials" class="il">
             <div class="social il">
                 <a href="#"><img src="psd/github.png"></a>
-</div>
-<div class="social il">
-                <a href="#"><img src="psd/linkedin.png"></a>
-</div>
+        </div>
+        <div class="social il">
+            <a href="#"><img src="psd/linkedin.png"></a>
+        </div>
         </div>
     </footer>
+    <div id='customLoading' class='whoosh'>
+        <div class='wrapper il vmid'>
+            <div class='il'>
+                <img src="psd/custom_loading.gif" />
+            </div>
+            <div class='status'>
+                <span>Loading</span>
+            </div>
+        </div><div class='tight vmid'></div>
+    </div>
 </body></html>
