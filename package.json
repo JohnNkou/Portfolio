@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=test npx jest",
     "devStart": "ROOT=`pwd` node controllers/start.js",
-    "awsDevStart": "sudo ROOT=`pwd` node controllers/start.js"
+    "awsDevStart": "sudo ROOT=`pwd` node controllers/start.js",
+    "devBundle": "webpack"
   },
   "keywords": [
     "Abel",
