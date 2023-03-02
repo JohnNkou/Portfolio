@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "NODE_ENV=test npx jest",
-    "devStart": "ROOT=`pwd` node controllers/start.js"
+    "devStart": "ROOT=`pwd` node controllers/start.js",
+    "awsDevStart": "ROOT=`pwd` sudo node controllers/start.js",
   },
   "keywords": [
     "Abel",
