@@ -55,8 +55,8 @@ state = {
 	contact:{
 		mail:['lebakashoba@hotmail.fr'],
 		socials:[
-			{ src:'psd/github.png', link:'#' },
-			{ src:'psd/linkedin.png', link:'#' }
+			{ src:'psd/github.png', link:"https://github.com/JohnNkou" },
+			{ src:'psd/linkedin.png', link:"https://www.linkedin.com/in/leba-kashoba-124951153" }
 		]
 	},
 	loading:''
