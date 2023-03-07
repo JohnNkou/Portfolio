@@ -1,6 +1,6 @@
 const React = require('react'),
 { useEffect, useState } = React,
-{ Loading, MovableItem, myTower, WindowLoading, CustomLoading } = require('./common.jsx'),
+{ Loading, MovableItem, myTower, WindowLoading, CustomLoading, Time } = require('./common.jsx'),
 { moveObject, Tower, animate, buttonsHandler, setLeaderView } = require('../src/utilis.js'),
 { useSelector, useDispatch, ReactReduxContext } = require('react-redux'),
 { addEntry, removeEntry, openFolder, closeFolder, minimizeFolder, deminimizeFolder, openFrame, closeFrame, minimizeFrame, deminimizeFrame, closeFile, minimizeFile, openFile, deminimizeFile, setLeadApp, saveFile, setAboutInView, setLoading } = require('../src/actionCreator.js'),
@@ -65,41 +65,83 @@ function Header(props){
 	)
 }
 
-function Apple(props){
-	let [show,setState] = useState(false),
-	menuClass = `menu${(show)? '': ' whoosh'}`,
-	iconClass = `icon${(show)?' active':''}`,
-	aboutInView = useSelector(aboutInViewSelector),
-	dispatch = useDispatch(),
-	appleBlackClass = (show)? 'whoosh':'',
-	appleBlueClass = (show)? '':'whoosh';
+class Apple extends React.PureComponent{
+	constructor(props,context){
+		super(props);
+		this.store = context.store;
+		this.state = { show:false, aboutInView: this.store.getState().aboutView };
+		this.appleTogglerRef = React.createRef();
+		this.aboutTogglerRef = React.createRef();
+	}
 
-	return (
-		<div id="apple" className="il">
-            <div className={iconClass}><a href="#" onClick={(event)=> { event.preventDefault(); setState(!show)}}><img className={appleBlackClass} src="psd/apple.png" /><img className={appleBlueClass} src="psd/apple-white.png" /></a></div>
-            <div className={menuClass}>
-                <div className="menuText">
-                    <span onClick={()=>{
-                    	if(!aboutInView){
-                    		dispatch(setAboutInView({display:true}))
-                    	}
-                    }}>About Me</span>
-                </div>
-                <div className="menuText">
-                    <span>Change template</span><img src='psd/next.png' />
-                    <div className='menu'>
-                        <div className='menuText'>
-                            <a href="?template=window" onClick={(event)=>{ event.preventDefault(); event.stopPropagation(); dispatch(setLoading({ template:'window' })) }}>Windows</a>
-                        </div>
-                        <div className='menuText'>
-                            <a href="?template=custom" onClick={(event)=> { event.preventDefault(); event.stopPropagation(); dispatch(setLoading({ template:'custom' })) }}>Custom</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-	)
+	componentWillUnmount(){
+		myTower.unsubscribe('clear',this.subId)
+		this.unsubscribe();
+	}
+
+	componentDidMount(){
+		let store = this.store;
+		this.subId = myTower.subscribe('clear',()=>{
+			if(this.state.show){
+				this.setState({ show:false });
+			}
+		})
+		this.unsubscribe = store.subscribe(()=>{
+			let state = store.getState(),
+			{ aboutInView } = this.state;
+
+			if(state.aboutView != aboutInView){
+				this.setState({ aboutInView:state.aboutView });
+			}
+		})
+		this.appleToggler = this.appleTogglerRef.current;
+		this.aboutToggler = this.aboutTogglerRef.current;
+
+		this.appleToggler.onclick = (event)=>{
+			event.preventDefault();
+			event.stopPropagation();
+			this.setState({ show: !this.state.show });
+		}
+		this.aboutToggler.onclick = (event)=>{
+			let { aboutInView } = this.state;
+
+			if(!aboutInView){
+				this.store.dispatch(setAboutInView({display:true}));
+			}
+		}
+	}
+
+	render(){
+		let { show, aboutView } = this.state,
+		menuClass = `menu${(show)? '': ' whoosh'}`,
+		iconClass = `icon${(show)?' active':''}`,
+		appleBlackClass = (show)? 'whoosh':'',
+		appleBlueClass = (show)? '':'whoosh';
+
+		return (
+			<div id="apple" className="il">
+	            <div className={iconClass}><a ref={this.appleTogglerRef} href="#"><img className={appleBlackClass} src="psd/apple.png" /><img className={appleBlueClass} src="psd/apple-white.png" /></a></div>
+	            <div className={menuClass}>
+	                <div className="menuText">
+	                    <span ref={this.aboutTogglerRef}>About Me</span>
+	                </div>
+	                <div className="menuText">
+	                    <span>Change template</span><img src='psd/next.png' />
+	                    <div className='menu'>
+	                        <div className='menuText'>
+	                            <a href="?template=window" onClick={(event)=>{ event.preventDefault(); event.stopPropagation(); this.store.dispatch(setLoading({ template:'window' })) }}>Windows</a>
+	                        </div>
+	                        <div className='menuText'>
+	                            <a href="?template=custom" onClick={(event)=> { event.preventDefault(); event.stopPropagation(); this.store.dispatch(setLoading({ template:'custom' })) }}>Custom</a>
+	                        </div>
+	                    </div>
+	                </div>
+	            </div>
+	        </div>
+		)
+	}
 }
+Apple.contextType = ReactReduxContext;
 
 function AppName(props){
 	let MenuAction,
@@ -116,9 +158,17 @@ function AppName(props){
 		MenuAction = null
 	}
 
+	useEffect(()=>{
+		let subId = myTower.subscribe('clear',()=>{
+			setState(false);
+		})
+
+		return ()=> myTower.unsubscribe('clear',subId);
+	},[false])
+
 	return (
 		<div id='app' className='il'>
-            <div className='wrap'><span className='vmid' onClick={()=> setState(!show)} className='appName'>{appDetails.name}</span><div className='tight vmid'></div></div>
+            <div className='wrap'><span className='vmid' onClick={(event)=> { event.nativeEvent.stopImmediatePropagation(); event.nativeEvent.preventDefault(); setState(!show)}} className='appName'>{appDetails.name}</span><div className='tight vmid'></div></div>
             {MenuAction}
         </div>
 	)
@@ -207,13 +257,7 @@ function MenuAction(props){
 	return ToolsAction;
 }
 
-function Time(props){
-	return (
-		<div id="time" className="il">
-            <span>Fri 10:35Am</span>
-        </div>
-	)
-}
+
 
 function Desktop(props){
 	let folders = useSelector(openFoldersSelector),
@@ -260,7 +304,7 @@ class DesktopItem extends React.Component{
 		this.wrapRef = React.createRef();
 		this.iconRef = React.createRef();
 		this.state = { active:false };
-		this.store = context.store; console.log('context is',context);
+		this.store = context.store;
 	}
 
 	componentDidMount(){
@@ -888,6 +932,7 @@ class About extends MovableItem{
 		this.skillRef = React.createRef();
 		this.contRef = React.createRef();
 		this.closeRef = React.createRef();
+		this.socialsRef = React.createRef();
 		this.skills = this.store.getState().skills;
 		this.contact = this.store.getState().contact;
 	}
@@ -898,6 +943,7 @@ class About extends MovableItem{
 		this.skill = this.skillRef.current;
 		this.cont = this.contRef.current;
 		this.close = this.closeRef.current;
+		this.socials = this.socialsRef.current;
 
 		this.unsubscribe = store.subscribe(()=>{
 			let state = store.getState(),
@@ -928,6 +974,9 @@ class About extends MovableItem{
 		}
 		this.close.onclick = (event)=>{
 			this.store.dispatch(setAboutInView({ display:false }))
+		}
+		this.socials.onclick = (event)=>{
+			event.stopPropagation();
 		}
 	}
 	componentWillUnmount(){
@@ -1003,12 +1052,12 @@ class About extends MovableItem{
 	                            <h2>Mail</h2>
 	                            <span>{this.contact.mail}</span>
 	                        </div>
-	                        <div className='socials'>
+	                        <div ref={this.socialsRef} className='socials'>
 	                            <h2>Socials</h2>
 	                            {this.contact.socials.map(({ src, link })=>{
 	                            	return (
 	                            		<div key={link} className={socialClass}>
-			                                <a href={link}><img src={src} /></a>
+			                                <a target='blank' href={link}><img src={src} /></a>
 			                            </div>
 	                            	)
 	                            })}
