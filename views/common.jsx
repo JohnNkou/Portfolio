@@ -213,9 +213,37 @@ class CustomLoading extends React.Component{
 	}
 }
 
+function Time(props){
+	let [state,setState] = useState(new Date()),
+	dayName = ["Sun","Mon","Tue","Wed","Thu","Fri","Sat"],
+	minutes = state.getMinutes(),
+	minutesString = (String(minutes).length > 1)? minutes: `0${minutes}`,
+	dateString = `${dayName[state.getDay()]} ${state.getHours()}:${minutesString}`;
+
+	useEffect(()=>{
+		let seconds = 60 - state.getSeconds(),
+		counter;
+
+		setTimeout(()=>{
+			setState(new Date());
+			counter = setInterval(()=>{
+				setState(new Date());
+			},60000)
+		},seconds);
+
+		return ()=>{ clearInterval(counter) };
+	},[true]) 
+	return (
+		<div id="time" className="il">
+            <span>{dateString}</span>
+        </div>
+	)
+}
+
 exports.Loading = Loading;
 exports.MovableItem = MovableItem;
 exports.myTower = myTower;
 exports.MacLoading = MacLoading;
 exports.WindowLoading = WindowLoading;
 exports.CustomLoading = CustomLoading;
+exports.Time = Time;
