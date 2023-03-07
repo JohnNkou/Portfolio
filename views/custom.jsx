@@ -211,7 +211,7 @@ function Footer(props){
 	        	{socials.map(({ src,link  })=>{
 	        		return (
 	        			<div key={link} className={socialClass}>
-			                <a href={link}><img src={src} /></a>
+			                <a target='blank' href={link}><img src={src} /></a>
 			        	</div>
 	        		)
 	        	})}

@@ -1,6 +1,6 @@
 const React = require('react'),
 { useEffect, useState } = React,
-{ Loading, MovableItem, myTower, MacLoading, CustomLoading } = require('./common.jsx'),
+{ Loading, MovableItem, myTower, MacLoading, CustomLoading, Time } = require('./common.jsx'),
 { ReactReduxContext, useSelector, useDispatch } = require('react-redux'),
 { dockItemsSelector, desktopEntriesSelector, openFoldersSelector, kindImageSelector, openFramesSelector, openFilesSelector, loadingSelector } = require('../src/selector.js'),
 { moveObject, buttonsHandler } = require('../src/utilis.js'),
@@ -33,6 +33,13 @@ function App(){
 		LoadingComponent = <CustomLoading />
 	}
 
+	useEffect(()=>{
+		let body = document.body;
+		body.onclick = function(event){
+			myTower.publish('clear');
+		}
+	},[false])
+
 	return (
 		<>
 			<Loading />
@@ -58,9 +65,15 @@ function WindowDash(){
 	whiteMicrosoft = `white${(show)? " whoosh":""}`,
 	blueMicrosoft = `blue${(show)? "":" whoosh"}`;
 
+	useEffect(()=>{
+		myTower.subscribe('clear',()=>{
+			setState(false);
+		})
+	},[false])
+
 	return (
 		<div id="window" className="il">
-            <div className="icon" onClick={()=> setState(!show)}><img className={whiteMicrosoft} src="psd/microsoft.png" /><img className={blueMicrosoft} src="psd/microsoft-blue.png" /></div>
+            <div className="icon" onClick={(event)=> { event.preventDefault(); event.nativeEvent.stopImmediatePropagation(); setState(!show)}}><img className={whiteMicrosoft} src="psd/microsoft.png" /><img className={blueMicrosoft} src="psd/microsoft-blue.png" /></div>
             <MenuAction show={show} />
         </div>
 	)
@@ -124,8 +137,8 @@ function MenuActionSettings(){
                     <span>Change Template</span>
                 </div><div className='tight vmid'></div>
                 <div className='arrow il'>
-                        <div onClick={(event)=>{ event.preventDefault(); event.stopPropagation(); setState(!showSub); }} className='icon il vmid'>
-                                <img src='psd/github.png' />
+                        <div onClick={(event)=>{ event.preventDefault(); event.nativeEvent.stopImmediatePropagation(); setState(!showSub); }} className='icon il vmid'>
+                                <img src='psd/arrow-right.png' />
                         </div><div className='tight vmid'></div>
                         
                 </div>
@@ -310,15 +323,6 @@ class Link extends React.Component{
 	}
 }
 Link.contextType = ReactReduxContext;
-
-
-function Time(){
-	return (
-		<div id="time" className="il">
-            <span>19:50</span>
-        </div>
-	)
-}
 
 function Desktop(){
 	let desktopEntries = useSelector(desktopEntriesSelector),
