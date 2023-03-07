@@ -109,6 +109,10 @@ html *{
         #settings .arrow .icon{
                 margin:0;
         }
+        #settings .arrow img{
+                width:auto;
+        }
+        
         #settings .setting .sub{
                 border:1px solid white;
                 position:absolute;

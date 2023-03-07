@@ -204,7 +204,14 @@ footer span{
     right:0
 }
 #socials .social{
-    margin-right:1em
+    margin-right:1em;
+}
+#socials img{
+    border-radius:100%;
+    width:20px;
+}
+#socials img:first-child{
+    background-color:white;
 }
 
 @media(max-width:517px){
