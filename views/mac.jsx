@@ -154,6 +154,9 @@ function AppName(props){
 	else if(appDetails.kind == 'text'){
 		MenuAction = <FileAction show={show} />;
 	}
+	else if(appDetails.kind == 'html'){
+		MenuAction = <FrameAction show={show} />
+	}
 	else{
 		MenuAction = null
 	}
@@ -203,8 +206,26 @@ function FileAction({show}){
 		<div className={nodeClass}>
 			<div className='menuText'>
 				<span onClick={()=>{
-					files.forEach((file,id)=>{
-						dispatch(closeFile({id}));
+					files.forEach(({kind},id)=>{
+						dispatch(closeFile({id,kind}));
+					})
+				}}>Close</span>
+			</div>
+		</div>
+	)
+}
+
+function FrameAction({show}){
+	let frames = useSelector(openFramesSelector),
+	dispatch = useDispatch(),
+	nodeClass = `menu${(show)? '':' whoosh'}`
+
+	return (
+		<div className={nodeClass}>
+			<div className='menuText'>
+				<span onClick={()=>{
+					frames.forEach(({link,kind},id)=>{
+						dispatch(closeFrame({id,link, kind}));
 					})
 				}}>Close</span>
 			</div>
@@ -525,7 +546,7 @@ class Safari extends MovableItem{
 
 		let store = this.store,
 		self = this,
-		{ id,src, link } = this.props
+		{ id,src, link, kind } = this.props
 		this.input = this.inputRef.current;
 		this.frame = this.frameRef.current;
 		this.header = document.getElementById('header');
@@ -552,7 +573,7 @@ class Safari extends MovableItem{
 		this.head.onclick = buttonsHandler({
 			closeAction:()=>{
 				this.unsubscribe();
-				store.dispatch(closeFrame({link}));
+				store.dispatch(closeFrame({link,kind}));
 			},
 			minimizeAction:()=>{
 				store.dispatch(minimizeFrame({id}));
@@ -633,9 +654,6 @@ class SublimeText extends MovableItem{
 				if(!file.minimized && !show){
 					this.setState({ show:true })
 				}
-			}
-			else{
-				console.error(OpenFiles,id);
 			}
 		});
 
