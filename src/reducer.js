@@ -180,12 +180,12 @@ function openFileRed(state,action){
 
 function openFrameRed(state,action){
 	let { type, payload } = action,
-	{ link , id, name } = payload || {},
+	{ link , id, name, kind } = payload || {},
 	newState;
 
 	if(type == C.OPEN_FRAME){
 		if(state.every((x)=> x.link != link)){
-			newState = [...state, { link, name }];
+			newState = [...state, { link, name, kind }];
 			return newState;
 		}
 		return state;
