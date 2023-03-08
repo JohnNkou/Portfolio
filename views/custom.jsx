@@ -182,11 +182,11 @@ function Projects(props){
 	            <h1>Project</h1>
 	        </div>
 	        <div className="projectWrapper">
-	        	{projects.map(({ name, description })=>{
+	        	{projects.map(({ name, description,link })=>{
 	        		return (
 	        			<div key={name} className={className}>
 	        				<div className={className2}>
-	        					<h2>{name}</h2>
+	        					<h2><a target='blank' href={link}>{name}</a></h2>
 	        				</div>
 	        				<div className={className3}>
 	        					<p>{description}</p>
