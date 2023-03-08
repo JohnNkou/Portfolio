@@ -339,7 +339,7 @@ class DesktopItem extends React.Component{
 			let { src, name, id, kind, text } = this.props;
 
 			if(kind == 'folder')
-				this.store.dispatch(openFolder({ desktopId: id }))
+				this.store.dispatch(openFolder({ desktopId: id, kind }))
 			else if(kind == 'text'){
 				this.store.dispatch(openFile({ name, text, kind }))
 			}
@@ -483,10 +483,10 @@ class ContentItem extends React.Component{
 			}
 		}
 		this.node.ondblclick = (event)=>{
-			let { link, name } = this.props;
+			let { link, name, kind } = this.props;
 
 			if(link){
-				store.dispatch(openFrame({ link, name }));
+				store.dispatch(openFrame({ link, name, kind }));
 			}
 
 			event.preventDefault();
