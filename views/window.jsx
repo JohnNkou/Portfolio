@@ -14,6 +14,8 @@ function Root(props){
 				<title>Abel Kashoba - Window Template</title>
 			    <link rel="stylesheet" type="text/css" href="css/common.css"/>
 			    <link rel="stylesheet" type="text/css" href="css/window/main.css"/>
+			    <meta name='author' content='Abel Kashoba' />
+				<meta name='description' content="Abel Kashoba Windows Template is an windows like presentation of my Porfolio" />
 			</head>
 			<body>
 				<App />

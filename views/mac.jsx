@@ -13,6 +13,8 @@ function Root(props){
 				<title>Abel Kashoba - Mac Template</title>
 				<link rel='stylesheet' href='css/mac/main.css' />
 				<link rel='stylesheet' href='css/common.css' />
+				<meta name='author' content='Abel Kashoba' />
+				<meta name='description' content="Abel Kashoba Mac Template is an MacOs like presentation of my Porfolio" />
 			</head>
 			<body>
 				<App />

@@ -18,6 +18,8 @@ class Root extends React.Component{
 					<link rel='stylesheet' href='css/custom/main.css' />
 					<link rel='stylesheet' href='css/common.css' />
 					<meta name='viewport' content='width=device-width; initial-scale=1.0' />
+					<meta name='author' content='Abel Kashoba' />
+					<meta name='description' content="Hi, I'm Abel Kashoba a web developer. This is my portfolio made with my custom template that showcase my skills and the project i've worked in" />
 				</head>
 				<body>
 					<App />
