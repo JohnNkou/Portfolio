@@ -25,7 +25,7 @@ skills = [
 	{ name:'lambda', src:'psd/awslambda.png' }
 ],
 projects = [
-	{ name:'Akting', link:'https://accounting.abelkashoba.me', description:"Accounting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.", kind:'html' },
+	{ name:'Akting', link:'https://accounting.abelkashoba.me', description:"Akting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.", kind:'html' },
 	{ name:'SongA', link:"https://song.abelkashoba.me", description:"SongA is apn App that allow streaming of song Text. It's also a songBook app", kind:'html' }
 ],
 state = {
