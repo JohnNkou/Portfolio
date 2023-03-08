@@ -74,6 +74,8 @@ class MacLoading extends React.Component{
 		this.bar = this.barRef.current;
 		this.progress = this.progressRef.current;
 
+		document.title = 'Abel Kashoba - Mac Template'
+
 		var xml = new XMLHttpRequest(),
 		links = document.querySelectorAll('link'),
 		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
@@ -129,6 +131,8 @@ class WindowLoading extends React.Component{
 		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
 		toChange.href = 'css/window/main.css';
 
+		document.title = 'Abel Kashoba - Window Template'
+
 		if(toChange){
 			xml.open('GET','dist/windowBundle.js',true);
 			xml.onload = (event)=>{
@@ -178,6 +182,8 @@ class CustomLoading extends React.Component{
 		links = document.querySelectorAll('link'),
 		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
 		toChange.href = 'css/custom/main.css';
+
+		document.title = 'Abel Kashoba - Custom Template'
 
 		if(toChange){
 			xml.open('GET','dist/customBundle.js',true);

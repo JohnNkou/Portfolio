@@ -11,6 +11,7 @@ function Root(props){
 	return (
 		<html>
 			<head>
+				<title>Abel Kashoba - Window Template</title>
 			    <link rel="stylesheet" type="text/css" href="css/common.css"/>
 			    <link rel="stylesheet" type="text/css" href="css/window/main.css"/>
 			</head>
@@ -84,7 +85,6 @@ function MenuAction({show}){
 	return (
 		<div id="menuAction" className={nodeClass}>
 			<User />
-			<PopularItems />
             <MenuActionSettings />
         </div>
 	)

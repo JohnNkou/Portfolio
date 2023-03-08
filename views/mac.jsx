@@ -10,6 +10,7 @@ function Root(props){
 	return (
 		<html>
 			<head>
+				<title>Abel Kashoba - Mac Template</title>
 				<link rel='stylesheet' href='css/mac/main.css' />
 				<link rel='stylesheet' href='css/common.css' />
 			</head>
