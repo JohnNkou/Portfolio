@@ -12,6 +12,9 @@ app.set('view engine','jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(express.static(root,{ index:false}));
+app.get('/health',(req,res)=>{
+	res.status(200).end();
+})
 app.get('/',TemplateRender());
 
 module.exports = app;
