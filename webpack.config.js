@@ -1,9 +1,19 @@
 module.exports = {
 	mode:process.env.NODE_ENV || 'development',
 	entry:{
-		custom:'./entry/custom.js',
-		mac:'./entry/mac.js',
-		window: './entry/window.js'
+		custom:{
+			import:'./entry/custom.js',
+			dependOn:"react_redux_things"
+		},
+		mac:{
+			import:'./entry/mac.js',
+			dependOn:"react_redux_things"
+		},
+		window: {
+			import:'./entry/window.js',
+			dependOn:"react_redux_things"
+		},
+		react_redux_things:['react-dom','react','redux','react-redux']
 	},
 	output:{
 		filename:'[name]Bundle.js',
@@ -24,5 +34,6 @@ module.exports = {
 				}
 			}
 		]
-	}
+	},
+	devtool:'source-map'
 }
