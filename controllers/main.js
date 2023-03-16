@@ -1,4 +1,5 @@
 const express = require('express'),
+compression = require('compression'),
 app = express(),
 { TemplateRender } = require('./index.js'),
 root = process.env.ROOT;
@@ -11,6 +12,7 @@ app.set('views',`${root}/views`)
 app.set('view engine','jsx');
 app.engine('jsx', require('express-react-views').createEngine());
 
+app.use(compression());
 app.use(express.static(root,{ index:false}));
 app.get('/health',(req,res)=>{
 	res.status(200).end();
