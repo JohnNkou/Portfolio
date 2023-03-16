@@ -6,10 +6,10 @@
   "scripts": {
     "test": "NODE_ENV=test npx jest",
     "devStart": "ROOT=`pwd` node controllers/start.js",
-    "prodStart":"ROOT=`PWD` node controllers/start.js",
+    "prodStart": "ROOT=`PWD` node controllers/start.js",
     "awsDevStart": "sudo ROOT=`pwd` node controllers/start.js",
     "devBundle": "webpack",
-    "prodBundle":"NODE_ENV=production webpack"
+    "prodBundle": "NODE_ENV=production webpack"
   },
   "keywords": [
     "Abel",
@@ -19,6 +19,7 @@
   "author": "Abel kashoba",
   "license": "ISC",
   "dependencies": {
+    "compression": "^1.7.4",
     "express": "^4.18.2",
     "express-react-views": "^0.11.0",
     "react": "^18.2.0",
