@@ -1,7 +1,6 @@
 const C = require('./constant.js');
 
 function Reducer(state,action){
-	console.log('action',action);
 	return {
 		Desktop: {
 			entries:desktopRed(state.Desktop.entries,action)
