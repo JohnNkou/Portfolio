@@ -24,6 +24,7 @@ class Root extends React.Component{
 				<body>
 					<App />
 					<script src='dist/customBundle.js'></script>
+					<script src='dist/react_redux_thingsBundle.js'></script>
 				</body>
 			</html>
 		)

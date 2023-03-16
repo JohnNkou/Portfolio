@@ -20,6 +20,7 @@ function Root(props){
 			<body>
 				<App />
 				<script src="dist/windowBundle.js"></script>
+				<script src='dist/react_redux_thingsBundle.js'></script>
 			</body>
 		</html>
 	)

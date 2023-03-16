@@ -19,6 +19,7 @@ function Root(props){
 			<body>
 				<App />
 				<script src='dist/macBundle.js'></script>
+				<script src='dist/react_redux_thingsBundle.js'></script>
 			</body>
 		</html>
 	)
