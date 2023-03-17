@@ -346,7 +346,7 @@ function loadingRed(state,action){
 	{ template } = payload || {};
 
 	if(type == C.SET_LOADING){
-		if(template){
+		if(template != undefined){
 			return template;
 		}
 		else{

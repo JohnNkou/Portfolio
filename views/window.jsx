@@ -18,7 +18,11 @@ function Root(props){
 				<meta name='description' content="Abel Kashoba Windows Template is an windows like presentation of my Porfolio" />
 			</head>
 			<body>
-				<App />
+				<div id='window'>
+					<App />
+				</div>
+				<div id='mac'></div>
+				<div id='custom'></div>
 				<script src="dist/windowBundle.js"></script>
 				<script src='dist/react_redux_thingsBundle.js'></script>
 			</body>
@@ -26,37 +30,47 @@ function Root(props){
 	)
 }
 
-function App(){
+function App({Status}){
 	let loading = useSelector(loadingSelector),
-	LoadingComponent = null;
+	LoadingComponent = null,
+	dispatch = useDispatch(),
+	hide = (loading != 'window')? true:false;
 
 	if(loading == 'mac'){
-		LoadingComponent = <MacLoading />
+		LoadingComponent = <MacLoading Status={Status} dispatch={dispatch} setLoading={setLoading} currentTemplate="window" />
 	}
 	else if(loading == 'custom'){
-		LoadingComponent = <CustomLoading />
+		LoadingComponent = <CustomLoading Status={Status} dispatch={dispatch} setLoading={setLoading} currentTemplate="window" />
 	}
 
 	useEffect(()=>{
-		let body = document.body;
-		body.onclick = function(event){
+		let unSub = Status.subscribe('window',()=> dispatch(setLoading({template:'window'}))),
+		container = document.getElementById('window');
+		container.onclick = function(event){
 			myTower.publish('clear');
+		}
+
+		return ()=>{
+			unSub();
+			container.onclick = null;
 		}
 	},[false])
 
 	return (
 		<>
 			<Loading />
-			<Header />
-			<Desktop />
+			<Header hide={hide} />
+			<Desktop hide={hide} />
 			{LoadingComponent}
 		</>
 	)
 }
 
-function Header(){
+function Header({hide}){
+	let hideClass = (hide)? 'whoosh':'';
+
 	return (
-		<div id='header'>
+		<div id='header' className={hideClass}>
 			<WindowDash />
 			<FastLink />
 			<Time />
@@ -327,13 +341,14 @@ class Link extends React.Component{
 }
 Link.contextType = ReactReduxContext;
 
-function Desktop(){
+function Desktop({hide}){
 	let desktopEntries = useSelector(desktopEntriesSelector),
 	folders = useSelector(openFoldersSelector),
 	frames = useSelector(openFramesSelector),
 	files = useSelector(openFilesSelector),
 	kindImages = useSelector(kindImageSelector),
-	rap = true;
+	rap = true,
+	hideClass = (hide)? 'whoosh':'';
 
 	useEffect(()=>{
 		let node = document.getElementById('desktop');
@@ -343,7 +358,7 @@ function Desktop(){
 	},[rap])
 
 	return (
-		<div id="desktop">
+		<div id="desktop" className={hideClass}>
 			{desktopEntries.map((x,i)=> <DesktopItem id={i} {...x} key={x.name} kindImages={kindImages} />)}
 			{folders.map((x,i)=> <Folder id={i} {...x} key={x.name} kindImages={kindImages} />)}
 			{frames.map((x,i)=> <Edge id={i} {...x} key={x.name} />)}

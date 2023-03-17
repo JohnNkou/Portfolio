@@ -63,45 +63,114 @@ class MovableItem extends React.Component{
 	 }
 }
 
-class MacLoading extends React.Component{
+class Loader extends React.Component{
+	constructor(props){
+		super(props);
+		this.state = { show:true };
+		this.changeLink = this.changeLink.bind(this);
+	}
+
+	changeLink(){
+		var links = document.querySelectorAll('link'),
+		{ cssLink } = this,
+		link,
+		head = document.querySelector('head');
+
+		Array.prototype.forEach.call(links,(link)=> {
+			if(link.rel == 'stylesheet' && link.href.indexOf('common') == -1){
+				head.removeChild(link);
+			}
+		});
+		link = document.createElement('link');
+		link.rel = 'stylesheet';
+		link.href = cssLink;
+
+		head.appendChild(link);
+	}
+
+	componentDidMount(){
+		let { Status, setLoading, dispatch, currentTemplate } = this.props,
+		{ title,cssLink, bundleSrc, loaderName } = this;
+
+		if(!title || !cssLink || !bundleSrc || !loaderName){
+			console.error("No title or link or bundleSrc, loaderName given",this);
+			return 
+		}
+
+		document.title = title;
+
+			if(!Status.getState()[`${loaderName}Loaded`]){
+				console.log(loaderName,"not yet loaded, loading");
+				var { protocol, host } = location,
+				link = `${protocol}//${host}/${bundleSrc}`,
+				xml = new XMLHttpRequest();
+				xml.open('GET',link,true);
+				if(this.onprogress){
+					xml.onprogress = this.onprogress;
+				}
+				xml.onload = (event)=>{
+					try{
+						if(xml.status >= 200 && xml.status < 300){
+							dispatch(setLoading({ template: ''}))
+							eval(xml.response || xml.responseText);
+							this.changeLink();
+						}
+						else{
+							console.error("server returned bad status Code",xml.status);
+							dispatch(setLoading({template:currentTemplate}))
+						}
+					}
+					catch(e){
+						console.error("Error while parsing macBbundle",e.name,e.message,e.stack);
+						dispatch(setLoading({template:currentTemplate}));
+					}
+				}
+				xml.onerror = (error)=>{
+					dispatch(setLoading({template:currentTemplate}));
+					console.error("Error while trying to load mac Template");
+				}
+				xml.send();
+			}
+			else{
+				console.log(loaderName,'already loaded, sending message');
+				setTimeout(()=>{
+					this.changeLink();
+					Status.setLoaded(loaderName);
+					dispatch(setLoading({template:''}));
+					console.log("Message sent",Status.getState());
+				},1000)
+			}
+	}
+
+	render(){
+		return null;
+	}
+}
+
+class MacLoading extends Loader{
 	constructor(props){
 		super(props);
 		this.barRef = React.createRef();
 		this.progressRef = React.createRef();
+		this.title = 'Abel Kashoba - Mac Template';
+		this.cssLink = 'css/mac/main.css';
+		this.bundleSrc = 'dist/macBundle.js';
+		this.loaderName = 'mac';
+
+		this.onprogress = this.onprogress.bind(this);
+	}
+
+	onprogress(event){
+		if(event.lengthComputable){
+			this.progress.style.width = (event.loaded / event.total) * 100 + "%";
+		}
 	}
 
 	componentDidMount(){
 		this.bar = this.barRef.current;
 		this.progress = this.progressRef.current;
 
-		document.title = 'Abel Kashoba - Mac Template'
-
-		var xml = new XMLHttpRequest(),
-		links = document.querySelectorAll('link'),
-		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
-		toChange.href = 'css/mac/main.css';
-
-		if(toChange){
-			xml.open('GET','dist/macBundle.js',true);
-			xml.onprogress = (event)=>{
-				if(event.lengthComputable){
-					this.progress.style.width = (event.loaded / event.total) * 100 + "%";
-				}
-			}
-			xml.onload = (event)=>{
-				if(xml.status >= 200 && xml.status < 300){
-					unmountComponentAtNode(document.body);
-					eval(xml.response || xml.responseText);
-				}
-				else{
-					throw Error(xml.response || xml.responseText);
-				}
-			}
-			xml.send();
-		}
-		else{
-			throw Error("Links not found");
-		}
+		super.componentDidMount();
 	}
 
 	render(){
@@ -120,35 +189,13 @@ class MacLoading extends React.Component{
 	}
 }
 
-class WindowLoading extends React.Component{
+class WindowLoading extends Loader{
 	constructor(props){
 		super(props);
-	}
-
-	componentDidMount(){
-		var xml = new XMLHttpRequest(),
-		links = document.querySelectorAll('link'),
-		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
-		toChange.href = 'css/window/main.css';
-
-		document.title = 'Abel Kashoba - Window Template'
-
-		if(toChange){
-			xml.open('GET','dist/windowBundle.js',true);
-			xml.onload = (event)=>{
-				if(xml.status >= 200 && xml.status < 300){
-					unmountComponentAtNode(document.body);
-					eval(xml.response || xml.responseText);
-				}
-				else{
-					throw Error(xml.response || xml.responseText);
-				}
-			}
-			xml.send();
-		}
-		else{
-			throw Error("Links not found");
-		}
+		this.title = 'Abel Kashoba - Window Template';
+		this.cssLink = 'css/window/main.css';
+		this.bundleSrc = 'dist/windowBundle.js';
+		this.loaderName = 'window';
 	}
 
 	render(){
@@ -172,35 +219,13 @@ class WindowLoading extends React.Component{
 	}
 }
 
-class CustomLoading extends React.Component{
+class CustomLoading extends Loader{
 	constructor(props){
 		super(props);
-	}
-
-	componentDidMount(){
-		var xml = new XMLHttpRequest(),
-		links = document.querySelectorAll('link'),
-		toChange = Array.prototype.filter.call(links,(link)=> link.href.indexOf('common') == -1)[0];
-		toChange.href = 'css/custom/main.css';
-
-		document.title = 'Abel Kashoba - Custom Template'
-
-		if(toChange){
-			xml.open('GET','dist/customBundle.js',true);
-			xml.onload = (event)=>{
-				if(xml.status >= 200 && xml.status < 300){
-					unmountComponentAtNode(document.body);
-					eval(xml.response || xml.responseText);
-				}
-				else{
-					throw Error(xml.response || xml.responseText);
-				}
-			}
-			xml.send();
-		}
-		else{
-			throw Error("Links not found");
-		}
+		this.title = 'Abel Kashoba - Custom Template';
+		this.cssLink = 'css/custom/main.css';
+		this.bundleSrc = 'dist/customBundle.js';
+		this.loaderName = 'custom';
 	}
 
 	render(){

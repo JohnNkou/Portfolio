@@ -17,7 +17,11 @@ function Root(props){
 				<meta name='description' content="Abel Kashoba Mac Template is an MacOs like presentation of my Porfolio" />
 			</head>
 			<body>
-				<App />
+				<div id='mac'>
+					<App />
+				</div>
+				<div id='window'></div>
+				<div id='custom'></div>
 				<script src='dist/macBundle.js'></script>
 				<script src='dist/react_redux_thingsBundle.js'></script>
 			</body>
@@ -25,42 +29,49 @@ function Root(props){
 	)
 }
 
-function App(props){
+function App({ Status }){
 	let mounted = false,
 	loading = useSelector(loadingSelector),
-	LoadingComponent = null;
+	LoadingComponent = null,
+	dispatch = useDispatch(),
+	hide = (loading != 'mac')? true:false;
 
 	if(loading == 'window'){
-		LoadingComponent = <WindowLoading />
+		LoadingComponent = <WindowLoading Status={Status} dispatch={dispatch} setLoading={setLoading} currentTemplate="mac" />
 	}
 	else if(loading == 'custom'){
-		LoadingComponent = <CustomLoading />
+		LoadingComponent = <CustomLoading Status={Status} dispatch={dispatch} setLoading={setLoading} currentTemplate="mac" />
 	}
 
 	useEffect(()=>{
-		let body = document.body;
-		body.onclick = function(event){
+		let unSub = Status.subscribe('mac',()=> dispatch(setLoading({template:'mac'}))),
+		container = document.getElementById('mac');
+		container.onclick = function(event){
 			myTower.publish('clear');
 		}
 
 		return ()=>{
-			body.onclick = null;
+			container.onclick = null;
+			unSub();
 		}
-	},[mounted])
+	},[true])
 	return (
 		<>
 			<Loading />
-			<Header />
-			<Desktop />
-			<DockItems />
+			<Header hide={hide} />
+			<Desktop hide={hide} />
+			<DockItems hide={hide} />
 			{LoadingComponent}
 		</>
 	)
 }
 
 function Header(props){
+	let { hide } = props,
+	hideClass = (hide)? 'whoosh':'';
+
 	return (
-		<div id='header'>
+		<div id='header' className={hideClass}>
 			<Apple />
 			<AppName />
 			<MenuAction />
@@ -288,10 +299,12 @@ function Desktop(props){
 	let folders = useSelector(openFoldersSelector),
 	frames = useSelector(openFramesSelector),
 	files = useSelector(openFilesSelector),
-	kindImages = useSelector(kindImageSelector);
+	kindImages = useSelector(kindImageSelector),
+	{ hide } = props,
+	hideClass = (hide)? 'whoosh':'';
 
 	return (
-		<div id='desktop'>
+		<div id='desktop' className={hideClass}>
 			<List kindImages={kindImages} />
 			{folders.map((x,i)=>{
 				return <Folder id={i} {...x} key={x.name} kindImages={kindImages} />
@@ -751,11 +764,13 @@ function ContextMenu(props){
 	)
 }
 
-function DockItems(props){
+function DockItems({hide}){
 	let docks = useSelector(dockItemsSelector),
-	kindImages = useSelector(kindImageSelector);
+	kindImages = useSelector(kindImageSelector),
+	hideClass = (hide)? 'whoosh':'';
+
 	return (
-		<div id='docker'>
+		<div id='docker' className={hideClass}>
 			<div className='il dockWrap'>
 				{docks.map((o,i)=>{
 					return <Dock {...o} key={i} kindImages={kindImages} />
@@ -924,10 +939,10 @@ class Dock extends React.Component{
 
 	render(){
 		let { props, state } = this,
-		{ src, active } = props,
+		{ src, active, hide } = props,
 		{ showIndicator } = state,
 		indicatorClass = `indicator${(showIndicator || active)? '':' whine'}`,
-		dockClass = `dock il${(showIndicator || active)?' animate':''}`;
+		dockClass = `dock il${(showIndicator || active)?' animate':''} ${(hide)?'hide':''}`;
 
 		return (
 			<div ref={this.nodeRef} className={dockClass}>

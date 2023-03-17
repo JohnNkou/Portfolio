@@ -17,14 +17,18 @@ class Root extends React.Component{
 					<title>Abel kashoba - Custom Template</title>
 					<link rel='stylesheet' href='css/custom/main.css' />
 					<link rel='stylesheet' href='css/common.css' />
-					<meta name='viewport' content='width=device-width; initial-scale=1.0' />
+					<meta name='viewport' content='width=device-width, initial-scale=1.0' />
 					<meta name='author' content='Abel Kashoba' />
 					<meta name='description' content="Hi, I'm Abel Kashoba a web developer. This is my portfolio made with my custom template that showcase my skills and the project i've worked in" />
 				</head>
 				<body>
-					<App />
-					<script src='dist/customBundle.js'></script>
+					<div id='custom'>
+						<App />
+					</div>
+					<div id='window'></div>
+					<div id='mac'></div>
 					<script src='dist/react_redux_thingsBundle.js'></script>
+					<script src='dist/customBundle.js'></script>
 				</body>
 			</html>
 		)
@@ -33,28 +37,34 @@ class Root extends React.Component{
 
 function App(props){
 	let loading = useSelector(loadingSelector),
-	currentLoading = null;
+	dispatch = useDispatch(),
+	currentLoading = null,
+	hide = (loading == 'custom')? false:true;
 
 	if(loading){
 		if(loading == 'mac'){
-			currentLoading = <MacLoading />
+			currentLoading = <MacLoading {...props} dispatch={dispatch} setLoading={setLoading} currentTemplate="custom" />
 		}
 		else if(loading == 'window'){
-			currentLoading = <WindowLoading />
+			currentLoading = <WindowLoading {...props} dispatch={dispatch} setLoading={setLoading} currentTemplate="custom" />
 		}
 	}
 
 	useEffect(()=>{
 		console.log("APP rendered");
-	})
+		let Status = props.Status,
+		unsub = Status.subscribe('custom',()=> dispatch(setLoading({template:'custom'})));
+
+		return ()=> unsub();
+	},[true])
 	return (
 		<>
-			<Header />
+			<Header hide={hide} />
 			{/*<SideBar />*/}
-			<Presentation />
-			<Skills />
-			<Projects />
-			<Footer />
+			<Presentation hide={hide} />
+			<Skills hide={hide} />
+			<Projects hide={hide} />
+			<Footer hide={hide} />
 			{currentLoading}
 		</>
 	)
@@ -66,8 +76,11 @@ class Header extends React.Component{
 	}
 
 	render(){
+		let { hide } = this.props,
+		className = (hide)? 'whoosh':'';
+
 		return (
-			<div id="header">
+			<div id="header" className={className}>
 				<TemplateChooser />
 				<div className='tight vmid'></div>
 				<ModeShift />
@@ -134,9 +147,12 @@ function SideBar(props){
 	)
 }
 
-function Presentation(){
+function Presentation(props){
+	let { hide } = props,
+	className = (hide)? 'whoosh':'';
+
 	return (
-		<div id="presentation">
+		<div id="presentation" className={className}>
 	        <div className="il">
 	            <p>Hi, I'm Abel Kashoba</p>
 	            <p>A web developer. I like to build performant and reliable apps in the cloud. I do front-end and back end work and I'll be really excited to work with you</p>
@@ -145,14 +161,16 @@ function Presentation(){
 	)
 }
 
-function Skills(){
+function Skills(props){
 	let skills = useSelector(skillsSelector),
 	className = 'skill il',
 	className2 = "icon",
-	className3 = "name";
+	className3 = "name",
+	{ hide } = props,
+	hideClass = (hide)? 'whoosh':'';
 
 	return (
-		<div id="skill">
+		<div id="skill" className={hideClass}>
 	        <div className="title il">
 	            <h1>Skills & certs</h1>
 	        </div>
@@ -178,10 +196,12 @@ function Projects(props){
 	let projects = useSelector(projectsSelector),
 	className = 'project',
 	className2 = 'name il',
-	className3 = 'description il';
+	className3 = 'description il',
+	{ hide } = props,
+	hideClass = (hide)? 'whoosh':'';
 
 	return (
-		<div id="project">
+		<div id="project" className={hideClass}>
 	        <div className="title il">
 	            <h1>Project</h1>
 	        </div>
@@ -206,10 +226,12 @@ function Projects(props){
 function Footer(props){
 	let contact = useSelector(contactSelector),
 	socials = contact.socials,
-	socialClass = 'social il';
+	socialClass = 'social il',
+	{ hide } = props,
+	hideClass = (hide)? 'whoosh':'';
 
 	return (
-		<footer>
+		<footer className={hideClass}>
 	        <div id="design" className="il">Built by Me</div>
 	        <div id="socials" className="il">
 	        	{socials.map(({ src,link  })=>{

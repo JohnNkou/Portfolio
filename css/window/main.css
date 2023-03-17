@@ -1,346 +1,345 @@
 html *{
-            margin:0;
-            padding:0;
-        }
-        html,body{
-            overflow:hidden;
-        }
-        body{
-            background-image:url('/psd/braden-jarvis-prSogOoFmkw-unsplash.jpg');
-            background-position:left top;
-            background-size: cover;
-            background-attachment:fixed;
-            background-repeat: no-repeat;
-        }
-        body *{
-            font-size:0.95em;
-            font-family:'trebuchet ms'
-        }
-        #header{
-            background-color:black;
-            padding-left:0px;
-            color:white;
-            position:fixed;
-                width:100%;
-                z-index:1000;
-        }
-        #header *{
-            vertical-align:middle;
-        }
-        #header > div{
-            margin-right:1em;
-                 padding:1px 0px;
-        }
-        #header img{
-            width:20px;
-        }
-        #window{
-            position:relative;
-        }
-        #window .icon:hover .white{
-                display:none;
-        }
-        #window .icon:hover .blue{
-                display:inline-block;
-        }
-        #menuAction{
-            position:absolute;
-            top:auto;
-            bottom:auto;
-            left:auto;
-            right:auto;
-            background-color:rgba(0,0,0,.8);
-            padding:10px 10px;
-            width:800px;
-            height:500px;
-            font-size:0.9em;
-        }
-        #menuAction span, #menuAction p{
-                word-spacing:3px
-        }
-        #user,#popular,#settings, #settings .setting .sub .set{
-                width:200px;
-        }
-        #user{
-            margin-bottom:2em;
-        }
-        #user .icon{
-            background-color:rgb(102,102,102);
-            padding:5px;
-            border-radius:20px;
-        }
-        #popular .popular *{
-            vertical-align:middle;
-        }
-        #popular .title{
-            margin-bottom:0.3em;
-        }
-        #popular .popular{
-            margin-top:0.5em;
-        }
-        #popular .popular:first-child{
-            margin-top:0em;
-        }
-        #popular .popular .icon{
-            background-color:rgb(0,120,215);
-            padding:5px;
-            margin-right:0.3em;
-        }
-        #settings{
-            margin-top:4em;
-        }
-        #settings .setting, #settings .setting .sub .set{
-                height:30px;
-        }
-        #settings .setting{
-                position:relative;
-                width:100%;
-        }
-        #settings .icon{
-            margin-right:0.5em;
-        }
-        #settings .setting .arrow{
-                position:absolute;
-                top:0px;
-                right:0px;
-                height:100%;
-                text-align:right;
-        }
-        #settings .arrow .icon{
-                margin:0;
-        }
-        #settings .arrow img{
-                width:auto;
-        }
-        
-        #settings .setting .sub{
-                border:1px solid white;
-                position:absolute;
-                top:0px;
-                left:100%;
-                
-        }
-        #settings .setting .sub .set{
-               
-        }
-        #settings .setting .sub a{
-                font-size:inherit;
-                padding-left:10px;
-        }
-        #settings *{
-            vertical-align:middle;
-        }
-        #fastLink .link{
-                padding:3px 6px;
-                border-top:3px solid black;
-        }
-        #fastLink .active{
-                border-top:3px solid rgb(49 157 255)
-        }
-        #fastLink .active, #fastLink .link:hover{
-                background-color:rgb(79 78 79);
-        }
-        #time{
-            position:absolute;
-            top:auto;
-            bottom:auto;
-            right:0px;
-            left:auto;
-            margin-right:1em;
-        }
+    margin:0;
+    padding:0;
+}
+html,body{
+    overflow:hidden;
+}
+body{
+    background-image:url('/psd/braden-jarvis-prSogOoFmkw-unsplash.jpg');
+    background-position:left top;
+    background-size: cover;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+}
+body *{
+    font-size:0.95em;
+    font-family:'trebuchet ms'
+}
+#window .hide{
+    display:none;
+}
+#window #header{
+    background-color:black;
+    padding-left:0px;
+    color:white;
+    position:fixed;
+    top: 0;
+    left:0;
+    width:100%;
+    z-index:1000;
+}
+#window #header *{
+    vertical-align:middle;
+}
+#window #header > div{
+    margin-right:1em;
+         padding:1px 0px;
+}
+#window #header img{
+    width:20px;
+}
+#window #window{
+    position:relative;
+}
+#window #window .icon:hover .white{
+        display:none;
+}
+#window #window .icon:hover .blue{
+        display:inline-block;
+}
+#window #menuAction{
+    position:absolute;
+    top:auto;
+    bottom:auto;
+    left:auto;
+    right:auto;
+    background-color:rgba(0,0,0,.8);
+    padding:10px 10px;
+    width:800px;
+    height:500px;
+    font-size:0.9em;
+}
+#window #menuAction span, #menuAction p{
+        word-spacing:3px
+}
+#window #user,#popular,#settings, #settings .setting .sub .set{
+        width:200px;
+}
+#window #user{
+    margin-bottom:2em;
+}
+#window #user .icon{
+    background-color:rgb(102,102,102);
+    padding:5px;
+    border-radius:20px;
+}
+#window #popular .popular *{
+    vertical-align:middle;
+}
+#window #popular .title{
+    margin-bottom:0.3em;
+}
+#window #popular .popular{
+    margin-top:0.5em;
+}
+#window #popular .popular:first-child{
+    margin-top:0em;
+}
+#window #popular .popular .icon{
+    background-color:rgb(0,120,215);
+    padding:5px;
+    margin-right:0.3em;
+}
+#window #settings{
+    margin-top:4em;
+}
+#window #settings .setting, #settings .setting .sub .set{
+        height:30px;
+}
+#window #settings .setting{
+        position:relative;
+        width:100%;
+}
+#window #settings .icon{
+    margin-right:0.5em;
+}
+#window #settings .setting .arrow{
+        position:absolute;
+        top:0px;
+        right:0px;
+        height:100%;
+        text-align:right;
+}
+#window #settings .arrow .icon{
+        margin:0;
+}
+#window #settings .arrow img{
+        width:auto;
+}
 
-        #desktop{
-            padding:10px 10px;
-            padding-bottom:0px;
-            color:white;
-            background-color:rgba(0,0,0,.2);
-            width:100%;
-            height:100%;
-            margin-top:31px;
-            position:relative;
-        }
-        #desktop .item{
-            margin-right:1em;
-            text-align:center;
-                position:relative;
-                width:48px;
-                height:68px;
-        }
-        #desktop .item .wrapper{
-                position:absolute;
-                top:0px;
-                left:0px;
-                padding:5px;
-        }
-        #desktop .item .active{
-                background-color: rgba(41,153,255,.6)
-        }
-        #desktop .full{
-                width:100%;
-                height:100%;
-                left:0;
-                top:0;
-        }
-        .box{
-            position:absolute;
-            background-color:white;
-            color:black;
-            text-align:left;
-            left:0;
-            right:0;
-            top:0;
-            bottom:0;
-            margin:auto auto;
-            width:600px;
-            height:400px;
-            border:1px solid silver;
-            overflow:hidden;
-        }
-        .box *{
-            vertical-align:middle;
-        }
-        .box .title img{
-                width:20px;
-        }
-        .folder .content img, .edge .content img{
-            width:15px;
-        }
-        .box .head{
-            border-bottom:1px solid rgb(218,219,220);
-            padding:3px 0px;
-            position:fixed;
-            width:598px;
-            left:auto;
-            right:auto;
-            background-color:inherit;
-        }
-        .full .head{
-                width:99.8%;
-        }
-        .folder .head .title{
-                padding-left:5px;
-        }
-        .folder .head .icon{
-            margin-right:0.3em;
-        }
-        .box .head .buttons{
-            position:absolute;
-            right:0;
-            top:0;
-        }
-        .box .head .buttons img{
-            padding:3px 10px;
-        }
-        .box .head .buttons .action:hover{
-            background-color:silver;
-        }
-        .box .head .buttons .closeBut:hover{
-            background-color:red;
-        }
-        .folder .content{
-                margin-top:26px;
-        }
-        .folder .cont{
-                padding:2px;
-                padding-left:5px;
-        }
-        .folder .active{
-                background-color: rgba(41,153,255,.9);
-                color:white
-        }
-        .folder .cont .icon{
-                margin-right:5px;
-        }
-        .edge{
-                padding:0px 0px;
-        }
-        .edge .head{
-                height:26px;
-                background-color:black;
-                padding:0px 0px;
-                border-bottom:0px
-        }
-        .edge .head .tab{
-                color:white;
-                height:100%;
-                width:200px;
-                text-align:center;
-        }
-        .edge .head .tab *{
-                vertical-align:middle;
-        }
-        .edge .head .tab, .edge .navigation{
-                background-color:rgb(50 49 49);
-        }
-        .edge .navigation{
-                text-align:center;
-                padding:5px 0px;
-                margin-top:26px;
-        }
-        .edge .navigation input{
-                width:300px;
-                padding:5px 0px;
-                text-align:center;
-        }
-        .edge .frame, .edge iframe{
-                width:100%;
-                height:100%;
-                border:none;
-        }
-        .notepad .head{
-                border-bottom:1px solid rgb(5 125 228);
-                padding-bottom:0px;
-        }
-        .notepad .head .title span:first-child{
-                margin-right:3px;
-        }
-        .notepad .options{
-                margin-top:10px;
-        }
-        .notepad .options .opt{
-                padding:2px 5px;
-                position:relative;
-        }
-        .notepad .contextmenu{
-                left:0px;
-                top:100%;
-        }
-        .notepad .options .opt:hover{
-                background-color: rgba(41,153,255,.6)
-        }
-        .notepad .contextmenu .list:hover{
-                background-color: rgba(41,153,255,.3)
-        }
-        .notepad .content{
-                width:100%;
-                height:100%;
-                margin-top:52px;
-        }
-        .notepad textarea{
-                width:101%;
-                height:100%;
-                padding:0px 5px;
-                padding-top:1px;
-                border:none;
-                overflow:scroll;
-        }
-        .contextmenu{
-            position:absolute;
-            width:200px;
-            background-color:white;
-            color:black;
-                border:1px solid silver;
-        }
-        .contextmenu .list{
-            padding:3px 5px;
-            padding-left:20px;
-        }
-        .contextmenu .list span:first-letter{
-                text-transform:uppercase;
-        }
-        .contextmenu .list:hover{
-                background-color:silver;
-        }
-        .contextmenu .list:last-child{
-            padding-bottom:5px;
-        }
+#window #settings .setting .sub{
+        border:1px solid white;
+        position:absolute;
+        top:0px;
+        left:100%;
+        
+}
+#window #settings .setting .sub .set{
+       
+}
+#window #settings .setting .sub a{
+        font-size:inherit;
+        padding-left:10px;
+}
+#window #settings *{
+    vertical-align:middle;
+}
+#window #fastLink .link{
+        padding:3px 6px;
+        border-top:3px solid black;
+}
+#window #fastLink .active{
+        border-top:3px solid rgb(49 157 255)
+}
+#window #fastLink .active, #fastLink .link:hover{
+        background-color:rgb(79 78 79);
+}
+#window #time{
+    position:absolute;
+    top:auto;
+    bottom:auto;
+    right:0px;
+    left:auto;
+    margin-right:1em;
+}
+#window #desktop{
+    padding:10px 10px;
+    padding-bottom:0px;
+    color:white;
+    background-color:rgba(0,0,0,.2);
+    width:100%;
+    height:100%;
+    margin-top:31px;
+    position:relative;
+}
+#window #desktop .item{
+    margin-right:1em;
+    text-align:center;
+        position:relative;
+        width:48px;
+        height:68px;
+}
+#window #desktop .item .wrapper{
+        position:absolute;
+        top:0px;
+        left:0px;
+        padding:5px;
+}
+#window #desktop .item .active{
+        background-color: rgba(41,153,255,.6)
+}
+#window #desktop .full{
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+}
+#window .box{
+    position:absolute;
+    background-color:white;
+    color:black;
+    text-align:left;
+    width:600px;
+    height:400px;
+    border:1px solid silver;
+    overflow:hidden;
+}
+#window .box *{
+    vertical-align:middle;
+}
+#window .box .title img{
+        width:20px;
+}
+#window .folder .content img, .edge .content img{
+    width:15px;
+}
+#window .box .head{
+    border-bottom:1px solid rgb(218,219,220);
+    padding:3px 0px;
+    position:fixed;
+    width:598px;
+    left:auto;
+    right:auto;
+    background-color:inherit;
+}
+#window .full .head{
+        width:99.8%;
+}
+#window .folder .head .title{
+        padding-left:5px;
+}
+#window .folder .head .icon{
+    margin-right:0.3em;
+}
+#window .box .head .buttons{
+    position:absolute;
+    right:0;
+    top:0;
+}
+#window .box .head .buttons img{
+    padding:3px 10px;
+}
+#window .box .head .buttons .action:hover{
+    background-color:silver;
+}
+#window .box .head .buttons .closeBut:hover{
+    background-color:red;
+}
+#window .folder .content{
+        margin-top:26px;
+}
+#window .folder .cont{
+        padding:2px;
+        padding-left:5px;
+}
+#window .folder .active{
+        background-color: rgba(41,153,255,.9);
+        color:white
+}
+#window .folder .cont .icon{
+        margin-right:5px;
+}
+#window .edge{
+        padding:0px 0px;
+}
+#window .edge .head{
+        height:26px;
+        background-color:black;
+        padding:0px 0px;
+        border-bottom:0px
+}
+#window .edge .head .tab{
+        color:white;
+        height:100%;
+        width:200px;
+        text-align:center;
+}
+#window .edge .head .tab *{
+        vertical-align:middle;
+}
+#window .edge .head .tab, .edge .navigation{
+        background-color:rgb(50 49 49);
+}
+#window .edge .navigation{
+        text-align:center;
+        padding:5px 0px;
+        margin-top:26px;
+}
+#window .edge .navigation input{
+        width:300px;
+        padding:5px 0px;
+        text-align:center;
+}
+#window .edge .frame, .edge iframe{
+        width:100%;
+        height:100%;
+        border:none;
+}
+#window .notepad .head{
+        border-bottom:1px solid rgb(5 125 228);
+        padding-bottom:0px;
+}
+#window .notepad .head .title span:first-child{
+        margin-right:3px;
+}
+#window .notepad .options{
+        margin-top:10px;
+}
+#window .notepad .options .opt{
+        padding:2px 5px;
+        position:relative;
+}
+#window .notepad .contextmenu{
+        left:0px;
+        top:100%;
+}
+#window .notepad .options .opt:hover{
+        background-color: rgba(41,153,255,.6)
+}
+#window .notepad .contextmenu .list:hover{
+        background-color: rgba(41,153,255,.3)
+}
+#window .notepad .content{
+        width:100%;
+        height:100%;
+        margin-top:52px;
+}
+#window .notepad textarea{
+        width:101%;
+        height:100%;
+        padding:0px 5px;
+        padding-top:1px;
+        border:none;
+        overflow:scroll;
+}
+#window .contextmenu{
+    position:absolute;
+    width:200px;
+    background-color:white;
+    color:black;
+        border:1px solid silver;
+}
+#window .contextmenu .list{
+    padding:3px 5px;
+    padding-left:20px;
+}
+#window .contextmenu .list span:first-letter{
+        text-transform:uppercase;
+}
+#window .contextmenu .list:hover{
+        background-color:silver;
+}
+#window .contextmenu .list:last-child{
+    padding-bottom:5px;
+}
