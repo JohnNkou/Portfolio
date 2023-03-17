@@ -14,8 +14,20 @@ app.engine('jsx', require('express-react-views').createEngine());
 
 app.use(compression());
 app.use(express.static(root,{ index:false}));
+app.use(express.json());
 app.get('/health',(req,res)=>{
 	res.status(200).end();
+})
+app.post('/log',(req,res)=>{
+	let headers = req.headers,
+	userAgent = headers['user-agent'],
+	body = req.body || {};
+
+	if(Object.keys(body).length){
+		console.log('userAgent:',userAgent);
+		console.log(body);
+	}
+	res.end();
 })
 app.get('/',TemplateRender());
 
