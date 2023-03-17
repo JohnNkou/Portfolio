@@ -28,7 +28,7 @@ module.exports = {
 		rules:[
 			{
 				test:/\.jsx?$/, 
-				exclude:/node_modules/,
+				exclude:/node_modules\/(?!redux|react-redux)/,
 				use:{
 					loader:'babel-loader'
 				}
