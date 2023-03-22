@@ -788,7 +788,7 @@ var macKindImage = {
   }, {
     name: 'Mictam',
     link: "https://mictam.abelkashoba.me",
-    description: "Mictam is apn App that allow streaming of song Text. It's also a songBook app",
+    description: "Mictam is an App that allow streaming of song Text. It's also a song book app",
     kind: 'html'
   }],
   state = {
