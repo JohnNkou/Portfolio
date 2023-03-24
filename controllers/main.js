@@ -1,7 +1,7 @@
 const express = require('express'),
 compression = require('compression'),
 app = express(),
-{ TemplateRender } = require('./index.js'),
+{ TemplateRender, CommitHandler, CloseServer } = require('./index.js'),
 root = process.env.ROOT;
 
 if(!root){
@@ -18,6 +18,7 @@ app.use(express.json());
 app.get('/health',(req,res)=>{
 	res.status(200).end();
 })
+app.post('/webhoock',CommitHandler(), CloseServer(app));
 app.post('/log',(req,res)=>{
 	let headers = req.headers,
 	userAgent = headers['user-agent'],
