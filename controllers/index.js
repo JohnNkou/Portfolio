@@ -17,10 +17,10 @@ function TemplateRender(){
 function CommitHandler(){
 	return (req,res,next)=>{
 		let body = req.body || {},
-		refs = body.refs;
+		ref = body.ref;
 
-		if(refs){
-			if(refs.indexOf('heads/master') != -1){
+		if(ref){
+			if(ref.indexOf('heads/master') != -1){
 				let message = '',
 				proc = spawn('git',['pull','Master','master'],{ timeout:8000 }),
 				proc2;
