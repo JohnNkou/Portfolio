@@ -1,2 +1,8 @@
 const app = require('./main.js');
-app.listen(80);
+
+var server = app.listen(80);
+app.__customServer = server;
+
+if(process.send){
+	process.send({started:true});
+}
