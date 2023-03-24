@@ -779,6 +779,18 @@ var macKindImage = {
   }, {
     name: 'lambda',
     src: 'psd/awslambda.png'
+  }, {
+    name: 'php',
+    src: 'psd/php.png'
+  }, {
+    name: 'react',
+    src: 'psd/react.png'
+  }, {
+    name: 'webpack',
+    src: 'psd/webpack.png'
+  }, {
+    name: 'jest',
+    src: 'psd/jest.png'
   }],
   projects = [{
     name: 'Akting',
