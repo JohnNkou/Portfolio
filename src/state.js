@@ -22,7 +22,11 @@ skills = [
 	{ name:'mongodb', src:'psd/mongodb.png' },
 	{ name:'rest', src:'psd/rest-api.png' },
 	{ name:'git', src:'psd/git.png' },
-	{ name:'lambda', src:'psd/awslambda.png' }
+	{ name:'lambda', src:'psd/awslambda.png' },
+	{ name:'php', src:'psd/php.png' },
+	{ name:'react', src:'psd/react.png' },
+	{ name:'webpack', src:'psd/webpack.png' },
+	{ name:'jest', src:'psd/jest.png' }
 ],
 projects = [
 	{ name:'Akting', link:'https://accounting.abelkashoba.me', description:"Akting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.", kind:'html' },
