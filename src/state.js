@@ -29,7 +29,7 @@ skills = [
 	{ name:'jest', src:'psd/jest.png' }
 ],
 projects = [
-	{ name:'Akting', link:'https://accounting.abelkashoba.me', description:"Akting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.", kind:'html' },
+	{ name:'Akting', link:'https://akting.abelkashoba.me', description:"Akting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.", kind:'html' },
 	{ name:'Mictam', link:"https://mictam.abelkashoba.me", description:"Mictam is an App that allow streaming of song Text. It's also a song book app", kind:'html' }
 ],
 state = {
