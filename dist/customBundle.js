@@ -804,7 +804,7 @@ var macKindImage = {
   }],
   projects = [{
     name: 'Akting',
-    link: 'https://accounting.abelkashoba.me',
+    link: 'https://akting.abelkashoba.me',
     description: "Akting is a book keeping project that allow you to track your expense and your input to get a better view or picture of your spending pattern.",
     kind: 'html'
   }, {
